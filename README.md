@@ -36,7 +36,7 @@ Install first:
 1. Clone repository:
 ```bash
 git clone https://github.com/lahadiyani/AGILEMinD.git
-cd agilemind
+cd AGILEMinD
 ```
 
 2. Create virtual environment:
