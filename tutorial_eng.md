@@ -1,15 +1,15 @@
-# Tutorial AGILEMinD Framework: Membuat Journal Searcher AI
+# AGILEMinD Framework Tutorial: Building a Journal Searcher AI
 
-## Gambaran Umum
-AGILEMinD adalah framework fleksibel untuk membangun AI agent yang dapat menangani berbagai tugas melalui antarmuka terpadu. Tutorial ini akan memandu Anda membuat Journal Searcher AI yang dapat mencari dan menganalisis makalah akademik.
+## Overview
+AGILEMinD is a flexible framework for building AI agents that can handle various tasks through a unified interface. This tutorial will guide you through creating a Journal Searcher AI agent that can search and analyze academic papers.
 
-## Prasyarat
+## Prerequisites
 - Python 3.8+
 - Flask
-- Pemahaman dasar Python dan REST API
-- Akses ke API makalah akademik (misalnya arXiv, Semantic Scholar)
+- Basic understanding of Python and REST APIs
+- Access to academic paper APIs (e.g., arXiv, Semantic Scholar)
 
-## Struktur Proyek
+## Project Structure
 ```
 app/
 ├── controllers/
@@ -26,8 +26,8 @@ app/
         └── journal_scripts.js
 ```
 
-## Langkah 1: Membuat Journal Search Tool
-Pertama, buat tool untuk berinteraksi dengan API makalah akademik.
+## Step 1: Create the Journal Search Tool
+First, create a tool to interact with academic paper APIs.
 
 ```python
 # app/tools/journal_search.py
@@ -42,7 +42,7 @@ class JournalSearchTool:
         }
 
     def search_papers(self, query: str, limit: int = 5) -> Dict:
-        """Mencari makalah akademik menggunakan query."""
+        """Search for academic papers using the query."""
         try:
             response = requests.get(
                 f"{self.base_url}/paper/search",
@@ -52,10 +52,10 @@ class JournalSearchTool:
             response.raise_for_status()
             return response.json()
         except Exception as e:
-            return {"error": f"Error saat mencari makalah: {str(e)}"}
+            return {"error": f"Error searching papers: {str(e)}"}
 
     def get_paper_details(self, paper_id: str) -> Dict:
-        """Mendapatkan informasi detail tentang makalah tertentu."""
+        """Get detailed information about a specific paper."""
         try:
             response = requests.get(
                 f"{self.base_url}/paper/{paper_id}",
@@ -64,42 +64,42 @@ class JournalSearchTool:
             response.raise_for_status()
             return response.json()
         except Exception as e:
-            return {"error": f"Error saat mendapatkan detail makalah: {str(e)}"}
+            return {"error": f"Error getting paper details: {str(e)}"}
 ```
 
-## Langkah 2: Membuat Template Prompt
-Buat template prompt untuk Journal Searcher AI.
+## Step 2: Create the Prompt Template
+Create a prompt template for the Journal Searcher AI.
 
 ```text
 # app/prompts/journal_searcher_prompts.txt
-Anda adalah Journal Searcher AI, khusus dalam mencari dan menganalisis makalah akademik. Tugas Anda adalah:
+You are a Journal Searcher AI, specialized in finding and analyzing academic papers. Your task is to:
 
-1. Mencari makalah yang relevan berdasarkan query pengguna
-2. Menganalisis dan merangkum temuan utama
-3. Memberikan wawasan dan koneksi antar makalah
-4. Menyarankan arah penelitian terkait
+1. Search for relevant papers based on the user's query
+2. Analyze and summarize the key findings
+3. Provide insights and connections between papers
+4. Suggest related research directions
 
-Format respons Anda sebagai berikut:
+Format your response as follows:
 
-# Hasil Pencarian
-- Daftar makalah relevan dengan judul dan penulis
+# Search Results
+- List of relevant papers with titles and authors
 
-# Temuan Utama
-- Ringkasan temuan utama dari makalah-makalah
+# Key Findings
+- Summary of main findings from the papers
 
-# Analisis
-- Analisis kritis terhadap penelitian
-- Koneksi antar makalah yang berbeda
+# Analysis
+- Critical analysis of the research
+- Connections between different papers
 
-# Arah Masa Depan
-- Saran untuk penelitian lebih lanjut
-- Topik terkait untuk dieksplorasi
+# Future Directions
+- Suggestions for further research
+- Related topics to explore
 
-Harap berikan temuan penelitian yang komprehensif dan terstruktur dengan baik.
+Please provide comprehensive and well-structured research findings.
 ```
 
-## Langkah 3: Membuat Journal Service
-Buat service untuk menangani logika bisnis.
+## Step 3: Create the Journal Service
+Create a service to handle the business logic.
 
 ```python
 # app/services/journal_service.py
@@ -112,20 +112,20 @@ class JournalService:
         self.prompt_service = PromptService()
 
     def search_journals(self, query: str, model: Optional[str] = None) -> Dict:
-        """Mencari dan menganalisis makalah akademik."""
+        """Search and analyze academic papers."""
         try:
-            # Mendapatkan hasil pencarian
+            # Get search results
             search_results = self.search_tool.search_papers(query)
             if "error" in search_results:
                 return {"status": "error", "error": search_results["error"]}
 
-            # Mendapatkan prompt dasar
+            # Get base prompt
             base_prompt = self.prompt_service.get_prompt("journal_searcher")
             
-            # Memformat prompt dengan hasil pencarian
-            formatted_prompt = f"{base_prompt}\n\nHasil Pencarian:\n{search_results}"
+            # Format the prompt with search results
+            formatted_prompt = f"{base_prompt}\n\nSearch Results:\n{search_results}"
             
-            # Menghasilkan analisis menggunakan Pollinations API
+            # Generate analysis using Pollinations API
             analysis = generate_text(formatted_prompt, model)
             
             return {
@@ -137,8 +137,8 @@ class JournalService:
             return {"status": "error", "error": str(e)}
 ```
 
-## Langkah 4: Membuat Controller
-Buat controller untuk menangani permintaan HTTP.
+## Step 4: Create the Controller
+Create a controller to handle HTTP requests.
 
 ```python
 # app/controllers/journal_controller.py
@@ -150,17 +150,17 @@ class JournalController:
         self.journal_service = JournalService()
 
     def search_journals(self, query: str, model: Optional[str] = None) -> Dict:
-        """Menangani permintaan pencarian jurnal."""
+        """Handle journal search requests."""
         try:
             result = self.journal_service.search_journals(query, model)
             return result
         except Exception as e:
-            current_app.logger.error(f"Error dalam pencarian jurnal: {e}")
+            current_app.logger.error(f"Error in journal search: {e}")
             return {"status": "error", "error": str(e)}
 ```
 
-## Langkah 5: Menambahkan JavaScript Frontend
-Buat antarmuka frontend untuk Journal Searcher.
+## Step 5: Add Frontend JavaScript
+Create the frontend interface for the Journal Searcher.
 
 ```javascript
 // app/static/js/journal_scripts.js
@@ -170,15 +170,15 @@ function searchJournals() {
 
     if (!query) {
         document.getElementById('search-output').innerHTML = 
-            '<p class="text-red-500">❌ Mohon masukkan query pencarian</p>';
+            '<p class="text-red-500">❌ Please enter a search query</p>';
         return;
     }
 
-    // Tampilkan status loading
+    // Show loading state
     document.getElementById('search-output').innerHTML = 
-        '<p class="text-gray-500">⏳ Mencari jurnal...</p>';
+        '<p class="text-gray-500">⏳ Searching journals...</p>';
 
-    // Siapkan data permintaan
+    // Prepare request data
     const requestData = {
         query: query,
         model: model
@@ -197,7 +197,7 @@ function searchJournals() {
             return;
         }
 
-        // Format dan tampilkan hasil
+        // Format and display results
         const formattedResults = formatJournalResults(data);
         document.getElementById('search-output').innerHTML = formattedResults;
     })
@@ -213,12 +213,12 @@ function formatJournalResults(data) {
     return `
         <div class="space-y-6">
             <div class="search-results">
-                <h3 class="text-lg font-semibold mb-2">Hasil Pencarian</h3>
+                <h3 class="text-lg font-semibold mb-2">Search Results</h3>
                 ${formatSearchResults(search_results)}
             </div>
             
             <div class="analysis">
-                <h3 class="text-lg font-semibold mb-2">Analisis</h3>
+                <h3 class="text-lg font-semibold mb-2">Analysis</h3>
                 <div class="markdown-content">
                     ${formatResponse(analysis)}
                 </div>
@@ -228,8 +228,8 @@ function formatJournalResults(data) {
 }
 ```
 
-## Langkah 6: Menambahkan Routes
-Tambahkan routes yang diperlukan ke aplikasi Flask Anda.
+## Step 6: Add Routes
+Add the necessary routes to your Flask application.
 
 ```python
 # app/routes/journal_routes.py
@@ -246,65 +246,65 @@ def search_journals():
     model = data.get('model')
     
     if not query:
-        return jsonify({"status": "error", "error": "Query diperlukan"}), 400
+        return jsonify({"status": "error", "error": "Query is required"}), 400
         
     result = journal_controller.search_journals(query, model)
     return jsonify(result)
 ```
 
-## Contoh Penggunaan
+## Usage Example
 
-1. Jalankan aplikasi Flask:
+1. Start the Flask application:
 ```bash
 flask run
 ```
 
-2. Akses antarmuka Journal Searcher di `http://localhost:5000`
+2. Access the Journal Searcher interface at `http://localhost:5000`
 
-3. Masukkan query pencarian, misalnya:
+3. Enter a search query, for example:
 ```
-"aplikasi machine learning dalam kesehatan"
+"machine learning applications in healthcare"
 ```
 
-4. Journal Searcher akan:
-   - Mencari makalah yang relevan
-   - Menganalisis temuan
-   - Memberikan ringkasan terstruktur
-   - Menyarankan arah penelitian terkait
+4. The Journal Searcher will:
+   - Search for relevant papers
+   - Analyze the findings
+   - Provide a structured summary
+   - Suggest related research directions
 
-## Tips Kustomisasi
+## Customization Tips
 
-1. **Menambah Fitur Baru**
-   - Perluas kelas `JournalSearchTool` untuk mendukung lebih banyak API
-   - Tambahkan metode baru ke `JournalService` untuk berbagai jenis analisis
-   - Buat template prompt baru untuk kasus penggunaan tertentu
+1. **Adding New Features**
+   - Extend the `JournalSearchTool` class to support more APIs
+   - Add new methods to the `JournalService` for different types of analysis
+   - Create new prompt templates for specific use cases
 
-2. **Meningkatkan Hasil**
-   - Implementasikan caching untuk makalah yang sering dicari
-   - Tambahkan filter untuk tanggal publikasi, jurnal, dll.
-   - Sertakan analisis sitasi dan metrik dampak
+2. **Improving Results**
+   - Implement caching for frequently searched papers
+   - Add filters for publication date, journal, etc.
+   - Include citation analysis and impact metrics
 
-3. **Meningkatkan UI**
-   - Tambahkan visualisasi untuk hubungan antar makalah
-   - Implementasikan sistem rekomendasi makalah
-   - Tambahkan fungsi ekspor untuk hasil pencarian
+3. **Enhancing the UI**
+   - Add visualization for paper relationships
+   - Implement paper recommendation system
+   - Add export functionality for search results
 
-## Praktik Terbaik
+## Best Practices
 
-1. **Penanganan Error**
-   - Selalu implementasikan penanganan error yang tepat dalam panggilan API
-   - Berikan pesan error yang bermakna kepada pengguna
-   - Catat error untuk debugging
+1. **Error Handling**
+   - Always implement proper error handling in API calls
+   - Provide meaningful error messages to users
+   - Log errors for debugging
 
-2. **Performa**
-   - Cache respons API jika memungkinkan
-   - Implementasikan pagination untuk set hasil besar
-   - Gunakan operasi async untuk tugas yang memakan waktu lama
+2. **Performance**
+   - Cache API responses when possible
+   - Implement pagination for large result sets
+   - Use async operations for long-running tasks
 
-3. **Keamanan**
-   - Validasi semua input pengguna
-   - Implementasikan rate limiting untuk panggilan API
-   - Amankan API key dan data sensitif
+3. **Security**
+   - Validate all user inputs
+   - Implement rate limiting for API calls
+   - Secure API keys and sensitive data
 
-## Kesimpulan
-Framework AGILEMinD menyediakan fondasi fleksibel untuk membangun AI agent. Dengan mengikuti tutorial ini, Anda telah membuat Journal Searcher AI yang dapat membantu peneliti mencari dan menganalisis makalah akademik. Anda dapat mengembangkannya lebih lanjut dengan menambah fitur, meningkatkan analisis, atau mengintegrasikan dengan API tambahan.
+## Conclusion
+The AGILEMinD framework provides a flexible foundation for building AI agents. By following this tutorial, you've created a Journal Searcher AI that can help researchers find and analyze academic papers. You can extend this further by adding more features, improving the analysis, or integrating with additional APIs.
