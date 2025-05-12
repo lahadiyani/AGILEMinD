@@ -35,7 +35,7 @@ Install first:
 
 1. Clone repository:
 ```bash
-git clone https://github.com/your-org/agilemind.git
+git clone https://github.com/lahadiyani/AGILEMinD.git
 cd agilemind
 ```
 
