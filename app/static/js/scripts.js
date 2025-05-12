@@ -22,6 +22,68 @@ marked.setOptions({
     }
 });
 
+// Cache for available models
+let availableModels = {
+    image: [],
+    text: []
+};
+
+// Load available models when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadAvailableModels();
+    
+    // Add event listener for agent selection change
+    document.getElementById('agent-select').addEventListener('change', function() {
+        updateModelControls();
+    });
+});
+
+function loadAvailableModels() {
+    // Load image models
+    fetch('/api/agents/models/image')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                availableModels.image = data.models;
+            }
+        })
+        .catch(error => console.error('Error loading image models:', error));
+
+    // Load text models
+    fetch('/api/agents/models/text')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                availableModels.text = data.models;
+            }
+        })
+        .catch(error => console.error('Error loading text models:', error));
+}
+
+function updateModelControls() {
+    const agentSelect = document.getElementById('agent-select');
+    const modelControls = document.getElementById('model-controls');
+    const modelSelect = document.getElementById('model-select');
+    
+    // Clear existing options
+    modelSelect.innerHTML = '<option value="">Default Model</option>';
+    
+    // Show/hide model controls based on agent type
+    if (agentSelect.value === 'pollinations') {
+        modelControls.classList.remove('hidden');
+        
+        // Add image models
+        availableModels.image.forEach(model => {
+            const option = document.createElement('option');
+            option.value = model;
+            option.textContent = model;
+            modelSelect.appendChild(option);
+        });
+    } else {
+        modelControls.classList.add('hidden');
+    }
+}
+
 function clearPrompt() {
     document.getElementById('prompt-input').value = '';
 }
@@ -29,6 +91,7 @@ function clearPrompt() {
 function runAgent() {
     const agent = document.getElementById('agent-select').value;
     const prompt = document.getElementById('prompt-input').value;
+    const model = document.getElementById('model-select').value;
 
     if (!prompt) {
         document.getElementById('agent-output').innerHTML = '<p class="text-red-500">❌ Error: Please enter a prompt</p>';
@@ -38,9 +101,20 @@ function runAgent() {
     // Show loading state
     document.getElementById('agent-output').innerHTML = '<p class="text-gray-500">⏳ Processing...</p>';
 
+    // Prepare request data
+    const requestData = {
+        prompt: prompt,
+        agent_type: agent
+    };
+
+    // Add model if selected
+    if (model) {
+        requestData.model = model;
+    }
+
     fetch(`/api/agents/${agent}`, {
         method: 'POST',
-        body: JSON.stringify({ prompt: prompt, agent_type: agent }),
+        body: JSON.stringify(requestData),
         headers: { 'Content-Type': 'application/json' },
     })
     .then(response => {
@@ -55,10 +129,13 @@ function runAgent() {
 
         if (agent === "pollinations" && prompt.startsWith("buatkan saya gambar")) {
             // Handle image response
+            const imagePath = data.image_path;
             document.getElementById("agent-output").innerHTML = `
                 <div class="text-center">
-                    <img src="${data.image_path}" alt="Generated Image" class="max-w-full rounded-lg shadow-lg" />
+                    <img src="${imagePath}" alt="Generated Image" class="max-w-full rounded-lg shadow-lg" 
+                         onerror="this.onerror=null; this.src=''; this.alt='Failed to load image'; this.parentElement.innerHTML += '<p class=\'text-red-500 mt-2\'>❌ Failed to load image</p>';" />
                     <p class="mt-2 text-sm text-gray-600">Generated image for prompt: "${prompt}"</p>
+                    ${model ? `<p class="text-sm text-gray-500">Using model: ${model}</p>` : ''}
                 </div>`;
         } else {
             // Handle text response with markdown rendering
@@ -67,6 +144,7 @@ function runAgent() {
                 <div class="space-y-4">
                     <div class="text-sm text-gray-600">Agent: ${data.agent_type || agent}</div>
                     <div class="text-sm text-gray-600">Prompt: "${prompt}"</div>
+                    ${model ? `<div class="text-sm text-gray-600">Model: ${model}</div>` : ''}
                     <div class="mt-4 markdown-content">${formattedResponse}</div>
                 </div>`;
             
