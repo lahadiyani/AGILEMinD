@@ -1,6 +1,6 @@
 # AGILEMinD - AI Agent Framework Starter
 
-![logo](app/static/assets/icon.jpeg)
+![logo](app/static/assets/icon.jpg)
 
 **AGILEMinD** adalah starter framework modular yang bisa anda customisasi untuk membangun dan menjalankan AI Agents (seperti `Researcher`, `Planner`, dan `Coder`) berbasis Python, Flask, dan LangChain. Cocok untuk membangun prototype AGI atau AI tooling dengan sistem orchestrator, memory, tools, dan vectorstore.
 
