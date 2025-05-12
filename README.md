@@ -125,7 +125,8 @@ pytest tests/
 
 ## How To Create AGI with AGILEMinD
 
-[Tutorial](tutorial.md)
+[Tutorial bahasa indonesia](tutorial.md)
+[English Tutorial](tutorial_eng.md)
 
 ---
 
