@@ -123,6 +123,12 @@ pytest tests/
 
 ---
 
+## How To Create AGI with AGILEMinD
+
+[Tutorial](tutorial.md)
+
+---
+
 ## 📄 Lisensi
 
 MIT License
