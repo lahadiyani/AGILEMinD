@@ -1,0 +1,13 @@
+{
+  "name": "pdf-ui-create",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.6",
+    "tailwindcss": "^4.1.6"
+  },
+  "scripts": {
+  "dev:css": "tailwindcss -i ./app/static/css/input.css -o ./app/static/css/output.css --watch"
+  }
+}

@@ -1,0 +1,76 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+.Python
+
+# Environment variable files
+.env
+*.env
+scripts/deploy.sh
+
+# Flask cache
+instance/
+*.db
+*.sqlite3
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache/
+nosetests.xml
+coverage.xml
+
+# Jupyter Notebooks (if used)
+.ipynb_checkpoints
+
+# Logs and debug
+*.log
+*.bak
+*.swp
+
+# VSCode / IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Mac/Linux/Windows trash
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# Node/NPM (if you decide to add frontend packages later)
+node_modules/
+dist/
+build/
+
+# FAISS index & temporary vector files (if serialized)
+*.faiss
+*.index
+*.npy
+*.npz
+
+# LangChain cache/storage (if any)
+lc_cache/
+.langchain/
+
+# Tailwind output
+app/static/css/output.css
+
+# Node
+node_modules/
+
+# my cache
+testa.py
+app/static/css/style.css
