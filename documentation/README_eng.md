@@ -77,12 +77,8 @@ flask db upgrade
 6. Run server:
 
 ```bash
-python main.py
-```
-
-# Terminal 2 - Tailwind CLI
-```bash
-yarn dev:css
+yarn install
+yarn run start
 ```
 
 ---
