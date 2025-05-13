@@ -22,6 +22,7 @@ instance/
 
 # Pytest / coverage
 .pytest_cache/
+tests/
 .coverage
 htmlcov/
 .tox/
@@ -36,6 +37,7 @@ coverage.xml
 *.log
 *.bak
 *.swp
+app/monitoring/agents
 
 # VSCode / IDE
 .vscode/
