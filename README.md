@@ -77,6 +77,7 @@ flask db upgrade
 6. Run server:
 
 ```bash
+yarn install
 yarn run start
 ```
 
