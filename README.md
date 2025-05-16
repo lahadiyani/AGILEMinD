@@ -44,7 +44,7 @@ cd AGILEMinD
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # atau .venv\Scripts\activate untuk Windows
+source .venv/bin/activate  # atau .\.venv\Scripts\Activate untuk Windows
 ```
 
 3. Install dependencies:
