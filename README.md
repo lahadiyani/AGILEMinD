@@ -1,49 +1,50 @@
-# AGILEMinD - AI Agent Framework Starter
+# AGILEMinD - Starter Framework AI Agent
 
 ![logo](app/static/assets/icon.jpg)
 
-**AGILEMinD** is a modular starter framework that you can customize to build and run AI Agents (such as `Researcher`, `Planner`, and `Coder`) based on Python, Flask, and LangChain. Perfect for building AGI prototypes or AI tooling with orchestrator, memory, tools, and vectorstore systems.
+**AGILEMinD** adalah sebuah framework starter modular yang bisa kamu kustomisasi untuk membangun dan menjalankan AI Agent (seperti `Researcher`, `Planner`, dan `Coder`) berbasis Python, Flask, dan LangChain. Cocok untuk membangun prototipe AGI atau alat bantu AI dengan sistem orchestrator, memory, tools, dan vectorstore.
 
 ---
 
-## 🚀 Key Features
+## 🚀 Fitur Unggulan
 
-- ✅ Application Factory Pattern (Flask)
-- ✅ Modular AI Agents Each agent can be developed separately and combined with the orchestrator.
-- ✅ Prompt Engineering Friendly Prompts are stored in template files, easy to customize.
-- ✅ Integrated with LangChain
-- ✅ FAISS & ElasticSearch support for vector database
-- ✅ MySQL for structured relational data
-- ✅ Lightweight Web UI (HTML, CSS, native JS)
-- ✅ Ready for CI/CD & containerization (Docker)
-
----
-
-## 🔧 Requirements
-
-Install first:
-
-- Python 3.10+
-- MySQL Server (local or Docker)
-- ElasticSearch (v8+)
-- FAISS (via `faiss-cpu` or `faiss-gpu`)
-- Docker (optional but recommended)
+* ✅ Menggunakan Application Factory Pattern (Flask)
+* ✅ AI Agent Modular Setiap agent bisa dikembangkan secara terpisah dan dikombinasikan melalui orchestrator.
+* ✅ Mendukung Prompt Engineering Prompt disimpan dalam file template, mudah disesuaikan.
+* ✅ Terintegrasi dengan LangChain
+* ✅ Mendukung FAISS & ElasticSearch untuk vector database
+* ✅ MySQL untuk data relasional terstruktur
+* ✅ Custom (HTML, CSS, JavaScript native)
+* ✅ Siap untuk CI/CD & containerization (Docker)
 
 ---
 
-## 📦 Installation
+## 🔧 Persyaratan
+
+Install terlebih dahulu:
+
+* Python 3.10+
+* MySQL Server (lokal atau via Docker)
+* ElasticSearch (versi 8 ke atas)
+* FAISS (`faiss-cpu` atau `faiss-gpu`)
+* Docker (opsional namun direkomendasikan)
+
+---
+
+## 📦 Instalasi
 
 1. Clone repository:
+
 ```bash
 git clone https://github.com/lahadiyani/AGILEMinD.git
 cd AGILEMinD
 ```
 
-2. Create virtual environment:
+2. Buat virtual environment:
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+source .venv/bin/activate  # atau .venv\Scripts\activate untuk Windows
 ```
 
 3. Install dependencies:
@@ -52,7 +53,7 @@ source .venv/bin/activate  # or .venv\Scripts\activate on Windows
 pip install -r requirements.txt
 ```
 
-4. Configure `.env`:
+4. Konfigurasi `.env`:
 
 ```env
 FLASK_APP=main.py
@@ -66,7 +67,7 @@ ELASTICSEARCH_HOST=http://localhost:9200
 OPENAI_API_KEY=your-openai-api-key
 ```
 
-5. Run database migration (if using SQLAlchemy):
+5. Jalankan migrasi database (jika menggunakan SQLAlchemy):
 
 ```bash
 flask db init
@@ -74,7 +75,7 @@ flask db migrate -m "initial"
 flask db upgrade
 ```
 
-6. Run server:
+6. Jalankan server:
 
 ```bash
 yarn install
@@ -83,9 +84,9 @@ yarn run start
 
 ---
 
-## 🧠 Running AI Agents
+## 🧠 Menjalankan AI Agent
 
-Visit:
+Buka:
 
 ```
 http://localhost:5000/
@@ -93,7 +94,7 @@ http://localhost:5000/
 
 ---
 
-## 🐳 Run via Docker
+## 🐳 Jalankan via Docker
 
 ```bash
 docker-compose up --build
@@ -101,7 +102,7 @@ docker-compose up --build
 
 ---
 
-## 🧪 Testing
+## 🧪 Pengujian
 
 ```bash
 pytest tests/
@@ -109,31 +110,31 @@ pytest tests/
 
 ---
 
-## 📌 Roadmap (TODO)
+## 📌 Roadmap (Rencana Pengembangan)
 
-* [ ] WebSocket integration for live agent feedback
-* [ ] GUI interface for prompt & memory editing
-* [ ] Built-in RAG system
-* [ ] Multiple memory backend switch (FAISS, Elastic)
-* [ ] Auth & Role-Based Access
+* [ ] Integrasi WebSocket untuk feedback agent secara real-time
+* [ ] Sistem RAG bawaan
+* [ ] Dukungan multiple backend memory (FAISS, Elastic)
 
 ---
 
-## How To Create AGI with AGILEMinD
+## Cara Membangun AGI dengan AGILEMinD
 
-[Tutorial bahasa indonesia](documentation/tutorial.md)
-[English Tutorial](documentation/tutorial_eng.md)
-
----
-
-## 📄 License
-
-MIT License
+[Tutorial bahasa Indonesia](documentation/tutorial.md)
+[Tutorial dalam Bahasa Inggris](documentation/tutorial_eng.md)
 
 ---
 
-## 👨‍💻 Author
+## 📄 Lisensi
 
-I developed this framework to make it easier for me to build Semi AGI, driven by my passion for modular, flexible, and sustainable code.
+Lisensi MIT
 
-## �� Contribute and Me
+---
+
+## 👨‍💻 Pengembang
+
+Saya mengembangkan framework ini untuk mempermudah proses membangun Semi AGI, didorong oleh semangat untuk menulis kode yang modular, fleksibel, dan berkelanjutan.
+
+## 🤝 Kontribusi dan Kontak
+
+[Email](lahadiyani@gmail.com)
