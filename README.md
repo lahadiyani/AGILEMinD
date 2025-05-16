@@ -137,4 +137,4 @@ Saya mengembangkan framework ini untuk mempermudah proses membangun Semi AGI, di
 
 ## 🤝 Kontribusi dan Kontak
 
-[Email](lahadiyani@gmail.com)
+[Email](mailto:lahadiyani@gmail.com)
