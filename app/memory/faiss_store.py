@@ -1,4 +1,4 @@
-from app.memory.base import MemoryStore
+from app.memory.base_memory import MemoryStore
 import faiss
 import numpy as np
 
