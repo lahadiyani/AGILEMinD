@@ -1,5 +1,5 @@
 # elasticsearch_store.py
-from app.memory.base import MemoryStore
+from app.memory.base_memory import MemoryStore
 from elasticsearch import Elasticsearch
 
 class ElasticsearchStore(MemoryStore):
