@@ -8,6 +8,7 @@
     "tailwindcss": "^4.1.6"
   },
   "scripts": {
-  "dev:css": "tailwindcss -i ./app/static/css/input.css -o ./app/static/css/output.css --watch"
+    "start": "python main.py && yarn dev:css",
+    "dev:css": "tailwindcss -i ./app/static/css/input.css -o ./app/static/css/output.css --watch"
   }
 }
