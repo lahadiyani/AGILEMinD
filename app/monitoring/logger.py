@@ -1,15 +1,32 @@
 import logging
 import os
 
-# Folder untuk log per komponen agen
-agents_log_root_dir = os.path.join(os.path.dirname(__file__), 'agents')
-os.makedirs(agents_log_root_dir, exist_ok=True)
+# Root folder logging untuk agents dan chains
+BASE_LOG_DIR = os.path.join(os.path.dirname(__file__), 'logs')
+AGENTS_LOG_DIR = os.path.join(BASE_LOG_DIR, 'agents')
+CHAINS_LOG_DIR = os.path.join(BASE_LOG_DIR, 'chains')
 
-def get_agent_logger(name: str, filename: str) -> logging.Logger:
+# Buat folder jika belum ada
+os.makedirs(AGENTS_LOG_DIR, exist_ok=True)
+os.makedirs(CHAINS_LOG_DIR, exist_ok=True)
+
+def get_logger(name: str, filename: str, component: str = 'agents') -> logging.Logger:
+    """
+    Mendapatkan logger untuk komponen tertentu (agents/chains).
+    :param name: Nama logger
+    :param filename: Nama file log (misal: agent1.log)
+    :param component: 'agents' atau 'chains'
+    :return: objek Logger
+    """
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
 
-    log_path = os.path.join(agents_log_root_dir, filename)
+    if component == 'chains':
+        log_dir = CHAINS_LOG_DIR
+    else:
+        log_dir = AGENTS_LOG_DIR
+
+    log_path = os.path.join(log_dir, filename)
     file_handler = logging.FileHandler(log_path)
     file_handler.setLevel(logging.DEBUG)
 
@@ -18,12 +35,16 @@ def get_agent_logger(name: str, filename: str) -> logging.Logger:
     )
     file_handler.setFormatter(formatter)
 
-    # Tambah console output juga (opsional)
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(formatter)
 
-    if not logger.handlers:
+    # Cek jika handler sudah ada supaya tidak duplikat
+    if not logger.hasHandlers():
         logger.addHandler(file_handler)
         logger.addHandler(stream_handler)
 
     return logger
+
+# Contoh penggunaan:
+# agent_logger = get_logger('my_agent', 'agent1.log', component='agents')
+# chain_logger = get_logger('my_chain', 'chain1.log', component='chains')
