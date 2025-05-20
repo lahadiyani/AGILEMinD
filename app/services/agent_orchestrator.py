@@ -1,4 +1,5 @@
-from app.tools.pollination import generate_text, generate_image
+from app.llms.registry import get_llm
+from app.tools.pollination import generate_image
 
 class AgentOrchestrator:
     def __init__(self, agent_name=None):
@@ -27,7 +28,8 @@ class AgentOrchestrator:
                 return {"status": "error", "message": image_data}
             return {"status": "success", "result": image_data}
         else:
-            text_data = generate_text(prompt)  # Ambil hasil teks dari Pollinations
+            llm = get_llm("pollinations")
+            text_data = llm.generate(prompt)
             if isinstance(text_data, str) and text_data.startswith("Error:"):
                 return {"status": "error", "message": text_data}
             return {"status": "success", "result": text_data}
@@ -36,7 +38,9 @@ class AgentOrchestrator:
         """
         Menjalankan agen OpenAI (misalnya GPT-3/4) untuk menghasilkan teks.
         """
-        pass  # Implementasi untuk agen OpenAI
+        llm = get_llm("openai")
+        text_data = llm.generate(prompt)
+        return {"status": "success", "result": text_data}
 
     def list_all_agents(self):
         """
