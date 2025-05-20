@@ -8,13 +8,30 @@ class ElasticsearchStore(MemoryStore):
         self.index_name = "vector_index"
 
     def add_documents(self, docs):
-        # Implement indexing dokumen ke Elasticsearch
-        pass
+        # docs: list of dicts with 'embedding' and 'text'
+        for i, doc in enumerate(docs):
+            self.es.index(index=self.index_name, id=i, body={
+                "embedding": doc["embedding"],
+                "text": doc.get("text", "")
+            })
 
     def similarity_search(self, query, top_k=5):
-        # Implement query similarity search ke Elasticsearch
-        pass
+        # Example: cosine similarity using script_score (Elasticsearch 7+)
+        script_query = {
+            "size": top_k,
+            "query": {
+                "script_score": {
+                    "query": {"match_all": {}},
+                    "script": {
+                        "source": "cosineSimilarity(params.query_vector, 'embedding') + 1.0",
+                        "params": {"query_vector": query}
+                    }
+                }
+            }
+        }
+        res = self.es.search(index=self.index_name, body=script_query)
+        return [hit["_source"] for hit in res["hits"]["hits"]]
 
     def persist(self):
-        # Biasanya tidak perlu karena langsung tersimpan
+        # Elasticsearch auto-persists, nothing needed
         pass
