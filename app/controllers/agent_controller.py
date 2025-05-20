@@ -1,6 +1,7 @@
 from app.services.agent_orchestrator import AgentOrchestrator
 from app.tools.pollination import generate_text, generate_image
 from app.services.prompt_service import PromptService
+from app.llms.registry import get_llm
 from flask import request, jsonify, current_app
 import os
 
@@ -20,7 +21,8 @@ class AgentController:
     
     def pollinations_text(self, prompt, model=None):
         try:
-            response = generate_text(prompt, model)
+            llm = get_llm("pollinations")
+            response = llm.generate(prompt, model)
             if isinstance(response, str) and response.startswith("Error:"):
                 return {"status": "error", "error": response}
             return {"status": "success", "response": response}
@@ -45,7 +47,7 @@ class AgentController:
             with open(image_path, 'wb') as f:
                 f.write(image_data)
 
-            # Return the relative path for the frontend
+            # Return the correct static path for the frontend
             return {
                 "status": "success",
                 "image_path": "/static/output/images/generated_image.jpg"
@@ -66,8 +68,9 @@ class AgentController:
             # Format the prompt with user input
             formatted_prompt = f"{base_prompt}\n\nUser Input: {prompt}"
             
-            # Generate response using Pollinations API
-            response = generate_text(formatted_prompt, model)
+            # Use Pollinations LLM for now (can be extended)
+            llm = get_llm("pollinations")
+            response = llm.generate(formatted_prompt, model)
             
             if isinstance(response, str) and response.startswith("Error:"):
                 return {"status": "error", "error": response}
