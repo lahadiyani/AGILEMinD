@@ -47,13 +47,31 @@ python -m venv .venv
 source .venv/bin/activate  # atau .\.venv\Scripts\Activate untuk Windows
 ```
 
-3. Install dependencies:
+3. Pesiapan Sebelum Menginstall module
+
+jika anda menggunakan sistem operasi linux pastikan `mariadb-connector-c-devel` dan `pkg-config` sudah terinstall pada komputer anda, jika belum anda bisa menginstallnya terlebih dahulu.
+
+untuk RedHat, Fedora
+
+
+```sh
+sudo dnf install mysql-devel mariadb-connector-c-devel pkg-config
+```
+
+untuk debian dan turunan nya (ubuntu, mint, xubuntu)
+
+```sh
+sudo apt update
+sudo apt install mysql-devel python3-dev default-libmysqlclient-dev build-essential pkg-config
+```
+
+4. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Konfigurasi `.env`:
+5. Konfigurasi `.env`:
 
 ```env
 FLASK_APP=main.py
@@ -67,7 +85,7 @@ ELASTICSEARCH_HOST=http://localhost:9200
 OPENAI_API_KEY=your-openai-api-key
 ```
 
-5. Jalankan migrasi database (jika menggunakan SQLAlchemy):
+6. Jalankan migrasi database (jika menggunakan SQLAlchemy):
 
 ```bash
 flask db init
@@ -75,7 +93,7 @@ flask db migrate -m "initial"
 flask db upgrade
 ```
 
-6. Jalankan server:
+7. Jalankan server:
 
 ```bash
 yarn install
