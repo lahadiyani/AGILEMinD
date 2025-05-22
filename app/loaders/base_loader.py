@@ -1,16 +1,49 @@
-# app/loaders/base_loader.py
+#app/loaders/base_loader.py
 
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Dict, Any, TypedDict, Union
+import os
+
+class LoaderException(Exception):
+    pass
+
+class Document(TypedDict):
+    content: str
+    metadata: Dict[str, Any]
 
 class BaseLoader(ABC):
     """
-    Kelas dasar untuk semua loader. Semua loader harus mewarisi ini.
+    Abstract base class for all document/data loaders.
     """
 
     @abstractmethod
-    def load(self, source: str) -> List[str]:
+    def load(self, source: Union[str, os.PathLike], **kwargs) -> List[Document]:
         """
-        Memuat data dari sumber dan mengembalikan list teks.
+        Load data from the given source and return a list of Document objects.
+
+        Args:
+            source (Union[str, os.PathLike]): Path, URL, or identifier of the data source.
+            **kwargs: Optional parameters like encoding, headers, etc.
+
+        Returns:
+            List[Document]: List of loaded documents with content and metadata.
+
+        Raises:
+            LoaderException: If the loader fails to load or parse the source.
         """
-        pass
+        raise NotImplementedError("Subclasses must implement this method")
+
+    def load_all(self, sources: List[Union[str, os.PathLike]], **kwargs) -> List[Document]:
+        """
+        Load multiple sources and aggregate documents.
+
+        Args:
+            sources (List[Union[str, os.PathLike]]): List of data sources.
+
+        Returns:
+            List[Document]: Aggregated list of documents from all sources.
+        """
+        results = []
+        for src in sources:
+            results.extend(self.load(src, **kwargs))
+        return results
