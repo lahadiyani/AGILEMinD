@@ -1,7 +1,7 @@
 import os
-from app.memory.faiss_store import FaissStore
-from app.memory.elasticsearch_store import ElasticsearchStore
-from app.memory.chroma_store import ChromaStore
+from app.memory.data.faiss_store import FaissStore
+from app.memory.data.elasticsearch_store import ElasticsearchStore
+from app.memory.data.chroma_store import ChromaStore
 
 def get_memory_store():
     store_type = os.getenv("MEMORY_STORE_TYPE", "faiss").lower()
