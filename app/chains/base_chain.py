@@ -11,7 +11,7 @@ class BaseChain:
             self.logger = get_logger(self.__class__.__name__, log_filename, component="chains")
         else:
             self.logger = None
-    
+
     def before_run(self, input_data):
         if self.logging_enabled and self.logger:
             self.logger.info(f"Starting chain with input: {input_data}")
@@ -39,11 +39,8 @@ class BaseChain:
         data = self.preprocess_input(input_data)
         for agent in self.agents:
             try:
-                # Pastikan run agent menerima context jika diperlukan
-                if hasattr(agent.run, "__code__") and agent.run.__code__.co_argcount > 1:
-                    data = agent.run(data, context=self.context)
-                else:
-                    data = agent.run(data)
+                # Kontrak: agent.run(input) -> output
+                data = agent.run(data)
             except Exception as e:
                 self.handle_error(agent, e)
         output = self.postprocess_output(data)
