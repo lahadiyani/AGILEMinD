@@ -1,5 +1,6 @@
+# app/services/agent_orchestrator.py
+
 from app.llms.registry import get_llm
-from app.tools.pollination import generate_image
 
 class AgentOrchestrator:
     def __init__(self, agent_name=None):
@@ -21,14 +22,14 @@ class AgentOrchestrator:
         """
         Menjalankan agen Pollinations.AI untuk menghasilkan teks atau gambar.
         """
+        llm = get_llm("pollinations")
         if prompt.startswith("image:"):
             image_prompt = prompt[len("image:"):].strip()  # Ambil prompt untuk gambar
-            image_data = generate_image(image_prompt)
+            image_data = llm.generate_image(image_prompt)
             if isinstance(image_data, str) and image_data.startswith("Error:"):
                 return {"status": "error", "message": image_data}
             return {"status": "success", "result": image_data}
         else:
-            llm = get_llm("pollinations")
             text_data = llm.generate(prompt)
             if isinstance(text_data, str) and text_data.startswith("Error:"):
                 return {"status": "error", "message": text_data}
