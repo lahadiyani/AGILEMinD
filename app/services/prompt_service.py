@@ -1,4 +1,5 @@
 import os
+from app.prompts.utils import PromptUtils
 
 class PromptService:
     def __init__(self):
@@ -10,10 +11,10 @@ class PromptService:
         if agent_type not in valid_types:
             raise ValueError(f"Unsupported agent type: {agent_type}")
 
-        prompt_file = os.path.join(self.prompts_dir, f'{agent_type}_prompts.txt')
+        prompt_filename = f'{agent_type}_prompts.txt'
         try:
-            with open(prompt_file, 'r') as f:
-                return f.read().strip()
+            # Gunakan PromptUtils.load_prompt agar caching dan logging aktif
+            return PromptUtils.load_prompt(prompt_filename).strip()
         except FileNotFoundError:
             raise ValueError(f"Prompt file not found for agent type: {agent_type}")
 
@@ -22,4 +23,4 @@ class PromptService:
         try:
             return base_prompt.format(**kwargs)
         except KeyError as e:
-            raise ValueError(f"Missing required parameter: {e}") 
+            raise ValueError(f"Missing required parameter: {e}")
