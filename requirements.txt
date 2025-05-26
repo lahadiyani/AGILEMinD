@@ -8,7 +8,8 @@ python-dotenv==1.0.0
 # Database
 pymysql==1.1.0
 mysqlclient==2.2.0
-elasticsearch==8.10.0
+elasticsearch==9.0.1
+chromadb==1.0.10
 
 # AI and ML
 langchain==0.0.267

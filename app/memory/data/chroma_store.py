@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import os
+=======
+>>>>>>> fd8f606146b90d91279277340bc0ca95872ee949
 import chromadb
 from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
 from app.memory.base_memory import MemoryStore

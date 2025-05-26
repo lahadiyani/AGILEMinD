@@ -1,7 +1,7 @@
-from app.monitoring.logger import get_agent_logger
+from app.monitoring.logger import get_logger
 from app.agents.base_agent import BaseAgent
 
-logger = get_agent_logger("AgentManager", "manager.log")
+logger = get_logger("AgentManager", "manager.log")
 
 class AgentManager:
     def __init__(self, agents: list[BaseAgent]):
