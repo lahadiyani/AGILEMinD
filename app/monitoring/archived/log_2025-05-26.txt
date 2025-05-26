@@ -1,0 +1,696 @@
+
+
+=== LOG ARCHIVE @ 2025-05-26 07:48:53 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 07:50:23 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 07:52:20 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 07:52:22 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:03:44 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:03:55 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:04:23 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:10:41 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:15:18 ===
+
+--- coderagent_agent.log from default ---
+[2025-05-26 08:11:02,146] [INFO] [CoderAgent.CoderAgent.log:30] - [CoderAgent] Input: buatkan saya kode javascript untuk fetch api
+[2025-05-26 08:11:02,147] [INFO] [CoderAgent.CoderAgent.log:30] - [CoderAgent] Calling LLM with prompt: You are a coding assistant. Your job is to write and optimize code based on given specifications. Use the following format of respons or output:
+
+1. Problem Analysis
+2. Solution Design
+3. Implementation
+4. Code Review & Optimization
+
+Please provide clean, efficient, and well-documented code solutions.
+
+here the question: buatkan saya kode javascript untuk fetch api
+[2025-05-26 08:11:08,830] [INFO] [CoderAgent.CoderAgent.log:30] - [CoderAgent] Raw response: 1. Problem Analysis
+
+You want a JavaScript code snippet that performs an API request using `fetch`. The code should be clean and efficient, likely demonstrating how to fetch data from a given endpoint and handle the response and errors appropriately.
+
+2. Solution Design
+
+- Use the native `fetch` API for making HTTP requests.
+- Handle asynchronous behavior using `async/await` for clarity.
+- Include error handling to manage network or response issues.
+- Parse the JSON response if applicable.
+- Provide a reusable function that accepts a URL and returns the fetched data.
+
+3. Implementation
+
+```javascript
+/**
+ * Fetch data from the given API endpoint.
+ * @param {string} url - The API URL to fetch data from.
+ * @returns {Promise<any>} - The parsed JSON data.
+ * @throws Will throw an error if the network request fails or the server returns an error status.
+ */
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Fetch error:', error);
+    throw error;  // Rethrow so caller can handle if needed
+  }
+}
+
+// Example usage:
+fetchData('https://api.example.com/data')
+  .then(data => console.log('Fetched data:', data))
+  .catch(err => console.error('Error fetching data:', err));
+```
+
+4. Code Review & Optimization
+
+- Using `async/await` makes the asynchronous code easier to read and maintain.
+- The function is generic and reusable with any API URL.
+- Proper error checking ensures that non-200 responses are caught.
+- Errors are logged and rethrown, giving flexibility to the caller.
+- This code assumes the API returns JSON. If the API returns other formats, you might extend the function with an optional parameter to specify response type.
+- For more complex scenarios, consider adding timeout logic or retries, but this simple snippet covers the basic, clean usage of `fetch`.
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:19:32 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:22:20 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:23:48 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:26:48 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:35:16 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:37:27 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:37:47 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:38:02 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:38:40 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:39:39 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:40:17 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:41:35 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:42:04 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:45:37 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:49:36 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:50:10 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:50:19 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:50:24 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:52:20 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:52:28 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:53:30 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:53:40 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 08:56:58 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:04:30 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:04:43 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:04:46 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:06:31 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:06:45 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:06:47 ===
+
+--- imagegenagent_agent.log from default ---
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:08:14 ===
+
+--- imagegenagent_agent.log from default ---
+[2025-05-26 08:16:37,356] [INFO] [ImageGenAgent.ImageGenAgent.log:30] - [ImageGenAgent] Input: buatkan saya gamabar naruto
+[2025-05-26 08:16:37,356] [INFO] [ImageGenAgent.ImageGenAgent.log:30] - [ImageGenAgent] Calling LLM with prompt: A highly detailed and realistic description of buatkan saya gamabar naruto, illustrated with vivid imagery and professional narrative tone. The scene is described with cinematic lighting, rich textures, and precise visual composition, as if it were concept art for a AAA video game or a high-end digital magazine. The background complements the subject naturally, with carefully chosen depth and environmental coherence to enhance immersion.
+[2025-05-26 08:16:59,710] [INFO] [ImageGenAgent.ImageGenAgent.log:30] - [ImageGenAgent] Raw response: Imagine a dynamic portrait of Naruto Uzumaki, captured in a moment of fierce determination amid a windswept battlefield at dusk. The scene is bathed in a cinematic amber glow, as the setting sun pierces through a sky streaked with smoky purples and fiery oranges, casting long, dramatic shadows that sculpt every line of his figure with precision.
+
+Naruto stands at the center, his classic orange and black shinobi outfit rendered with hyperrealistic textures: the fabric�s subtle weave is visible, catching the light where creases fold tightly around his muscular frame. His blue eyes gleam piercingly, alive with the fire of his indomitable spirit, framed by his unruly golden hair illuminated with strands flickering like molten gold. Fine details, like the delicate smudges of dirt and blood on his cheeks and forehead, add an authentic grit to his visage, telling tales of relentless struggle and perseverance.
+
+His signature forehead protector, etched with the Leaf Village symbol, gleams faintly, a polished metal surface reflecting the fractured light like a beacon. Wisps of chakra swirl subtly around his hands, rendered in a translucent, ethereal blue that contrasts sharply against the warm tones of the background. The faint crackle of energy animates the air, with tiny sparks glinting as they dance, illustrating the immense power coiled within his frame.
+
+The environmental elements deepen the narrative: a battleground strewn with shattered kunai and torn banners flutters in the rising wind, their textures rich�the frayed threads and scorched fabric telling silent stories of conflict. Jagged rocks and patches of scorched earth rise from the terrain, their rough surfaces highlighted by the dynamic lighting, providing natural leading lines that draw the eye directly to Naruto�s poised, ready stance.
+
+In the far background, silhouettes of ancient, towering trees blurred by depth of field add to the setting�s immersive depth, their twisted limbs echoing the turmoil yet resilient spirit of the ninja world. The composition balances the intensity of the subject with environmental storytelling, achieving a perfect harmony that breathes life into this conceptual masterpiece, worthy of a top-tier video game�s promotional art or a cutting-edge digital magazine cover.
+
+This image is more than a portrait�it's a vivid, tactile slice of Naruto�s world, meticulously crafted to celebrate both his heroic essence and the rich narrative tapestry that surrounds him.
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:08:23 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:08:25 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:09:41 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:09:44 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:14:26 ===
+
+--- imagedownloadertool.log from default ---
+[2025-05-26 09:09:53,561] [INFO] [ImageDownloaderTool.__init__:20] - Tool 'ImageDownloaderTool' initialized with config: {'save_dir': './static/output/image'}
+
+--- imagegenagent_agent.log from default ---
+[2025-05-26 09:09:53,569] [INFO] [ImageGenAgent.ImageGenAgent.log:30] - [ImageGenAgent] Calling LLM with prompt: A highly detailed and realistic description of buatkan saya gambar naruto, illustrated with vivid imagery and professional narrative tone. The scene is described with cinematic lighting, rich textures, and precise visual composition, as if it were concept art for a AAA video game or a high-end digital magazine. The background complements the subject naturally, with carefully chosen depth and environmental coherence to enhance immersion.
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:39:41 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 09:44:26 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:03:43 ===
+
+--- imagedownloadertool.log from default ---
+[2025-05-26 10:02:53,470] [INFO] [ImageDownloaderTool.__init__:20] - Tool 'ImageDownloaderTool' initialized with config: {'save_dir': './static/output/image'}
+
+--- imagegenagent_agent.log from default ---
+[2025-05-26 10:02:53,474] [INFO] [ImageGenAgent.ImageGenAgent.log:30] - [ImageGenAgent] Calling LLM with prompt: A highly detailed and realistic description of buatkan saya gambar naruto, illustrated with vivid imagery and professional narrative tone. The scene is described with cinematic lighting, rich textures, and precise visual composition, as if it were concept art for a AAA video game or a high-end digital magazine. The background complements the subject naturally, with carefully chosen depth and environmental coherence to enhance immersion.
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:08:27 ===
+
+--- imagedownloadertool.log from default ---
+[2025-05-26 10:03:56,634] [INFO] [ImageDownloaderTool.__init__:20] - Tool 'ImageDownloaderTool' initialized with config: {'save_dir': './static/output/image'}
+[2025-05-26 10:03:58,126] [ERROR] [ImageDownloaderTool.execute:71] - Gagal mengunduh gambar dari Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 438, in parse_url
+    host = _normalize_host(host, scheme)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 324, in _normalize_host
+    b".".join([_idna_encode(label) for label in host.split(".")]),
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 324, in <listcomp>
+    b".".join([_idna_encode(label) for label in host.split(".")]),
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 342, in _idna_encode
+    raise LocationParseError(
+urllib3.exceptions.LocationParseError: Failed to parse: Name ' The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit' is not a valid IDNA label
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 434, in prepare_url
+    scheme, auth, host, port, path, query, fragment = parse_url(url)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 449, in parse_url
+    raise LocationParseError(source_url) from e
+urllib3.exceptions.LocationParseError: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\app\tools\custom\image_downloader.py", line 59, in execute
+    response = requests.get(image_url, stream=True, timeout=15)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\sessions.py", line 575, in request
+    prep = self.prepare_request(req)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\sessions.py", line 486, in prepare_request
+    p.prepare(
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 436, in prepare_url
+    raise InvalidURL(*e.args)
+requests.exceptions.InvalidURL: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+
+--- imagegenagent_agent.log from default ---
+[2025-05-26 10:03:56,634] [INFO] [ImageGenAgent.ImageGenAgent.log:30] - [ImageGenAgent] Calling LLM with prompt: A highly detailed and realistic description of buatkan saya gambar naruto, illustrated with vivid imagery and professional narrative tone. The scene is described with cinematic lighting, rich textures, and precise visual composition, as if it were concept art for a AAA video game or a high-end digital magazine. The background complements the subject naturally, with carefully chosen depth and environmental coherence to enhance immersion.
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:09:07 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:09:27 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:09:41 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:10:29 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:16:02 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:16:05 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:17:52 ===
+
+--- imagedownloadertool.log from default ---
+[2025-05-26 10:16:32,155] [INFO] [ImageDownloaderTool.__init__:20] - Tool 'ImageDownloaderTool' initialized with config: {'save_dir': './static/output/image'}
+[2025-05-26 10:16:33,577] [ERROR] [ImageDownloaderTool.execute:71] - Gagal mengunduh gambar dari Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 438, in parse_url
+    host = _normalize_host(host, scheme)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 324, in _normalize_host
+    b".".join([_idna_encode(label) for label in host.split(".")]),
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 324, in <listcomp>
+    b".".join([_idna_encode(label) for label in host.split(".")]),
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 342, in _idna_encode
+    raise LocationParseError(
+urllib3.exceptions.LocationParseError: Failed to parse: Name ' The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit' is not a valid IDNA label
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 434, in prepare_url
+    scheme, auth, host, port, path, query, fragment = parse_url(url)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 449, in parse_url
+    raise LocationParseError(source_url) from e
+urllib3.exceptions.LocationParseError: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\app\tools\custom\image_downloader.py", line 59, in execute
+    response = requests.get(image_url, stream=True, timeout=15)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\sessions.py", line 575, in request
+    prep = self.prepare_request(req)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\sessions.py", line 486, in prepare_request
+    p.prepare(
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 436, in prepare_url
+    raise InvalidURL(*e.args)
+requests.exceptions.InvalidURL: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+
+--- imagegenagent_agent.log from default ---
+[2025-05-26 10:16:32,157] [INFO] [ImageGenAgent.ImageGenAgent.log:30] - [ImageGenAgent] Calling LLM with prompt: A highly detailed and realistic description of buatkan saya gambar naruto, illustrated with vivid imagery and professional narrative tone. The scene is described with cinematic lighting, rich textures, and precise visual composition, as if it were concept art for a AAA video game or a high-end digital magazine. The background complements the subject naturally, with carefully chosen depth and environmental coherence to enhance immersion.
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:18:01 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:18:53 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:19:45 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:20:39 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:22:49 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:23:31 ===
+
+--- imagedownloadertool.log from default ---
+[2025-05-26 10:23:04,651] [INFO] [ImageDownloaderTool.__init__:20] - Tool 'ImageDownloaderTool' initialized with config: {'save_dir': './static/output/image'}
+[2025-05-26 10:23:05,660] [ERROR] [ImageDownloaderTool.execute:71] - Gagal mengunduh gambar dari Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 438, in parse_url
+    host = _normalize_host(host, scheme)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 324, in _normalize_host
+    b".".join([_idna_encode(label) for label in host.split(".")]),
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 324, in <listcomp>
+    b".".join([_idna_encode(label) for label in host.split(".")]),
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 342, in _idna_encode
+    raise LocationParseError(
+urllib3.exceptions.LocationParseError: Failed to parse: Name ' The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit' is not a valid IDNA label
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 434, in prepare_url
+    scheme, auth, host, port, path, query, fragment = parse_url(url)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 449, in parse_url
+    raise LocationParseError(source_url) from e
+urllib3.exceptions.LocationParseError: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\app\tools\custom\image_downloader.py", line 59, in execute
+    response = requests.get(image_url, stream=True, timeout=15)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\sessions.py", line 575, in request
+    prep = self.prepare_request(req)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\sessions.py", line 486, in prepare_request
+    p.prepare(
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 436, in prepare_url
+    raise InvalidURL(*e.args)
+requests.exceptions.InvalidURL: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+
+--- imagegenagent_agent.log from default ---
+[2025-05-26 10:23:04,654] [INFO] [ImageGenAgent.ImageGenAgent.log:30] - [ImageGenAgent] Calling LLM with prompt: A highly detailed and realistic description of buatkan saya gambar naruto, illustrated with vivid imagery and professional narrative tone. The scene is described with cinematic lighting, rich textures, and precise visual composition, as if it were concept art for a AAA video game or a high-end digital magazine. The background complements the subject naturally, with carefully chosen depth and environmental coherence to enhance immersion.
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:23:34 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:26:11 ===
+
+--- imagedownloadertool.log from default ---
+[2025-05-26 10:24:46,890] [INFO] [ImageDownloaderTool.__init__:20] - Tool 'ImageDownloaderTool' initialized with config: {'save_dir': './static/output/image'}
+[2025-05-26 10:24:50,318] [ERROR] [ImageDownloaderTool.execute:71] - Gagal mengunduh gambar dari Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 438, in parse_url
+    host = _normalize_host(host, scheme)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 324, in _normalize_host
+    b".".join([_idna_encode(label) for label in host.split(".")]),
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 324, in <listcomp>
+    b".".join([_idna_encode(label) for label in host.split(".")]),
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 342, in _idna_encode
+    raise LocationParseError(
+urllib3.exceptions.LocationParseError: Failed to parse: Name ' The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit' is not a valid IDNA label
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 434, in prepare_url
+    scheme, auth, host, port, path, query, fragment = parse_url(url)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 449, in parse_url
+    raise LocationParseError(source_url) from e
+urllib3.exceptions.LocationParseError: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\app\tools\custom\image_downloader.py", line 59, in execute
+    response = requests.get(image_url, stream=True, timeout=15)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\sessions.py", line 575, in request
+    prep = self.prepare_request(req)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\sessions.py", line 486, in prepare_request
+    p.prepare(
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 436, in prepare_url
+    raise InvalidURL(*e.args)
+requests.exceptions.InvalidURL: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+
+--- imagegenagent_agent.log from default ---
+[2025-05-26 10:24:46,890] [INFO] [ImageGenAgent.ImageGenAgent.log:30] - [ImageGenAgent] Calling LLM with prompt: A highly detailed and realistic description of buatkan saya gambar naruto, illustrated with vivid imagery and professional narrative tone. The scene is described with cinematic lighting, rich textures, and precise visual composition, as if it were concept art for a AAA video game or a high-end digital magazine. The background complements the subject naturally, with carefully chosen depth and environmental coherence to enhance immersion.
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:31:57 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:46:07 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:46:10 ===
+
+
+=== LOG ARCHIVE @ 2025-05-26 10:53:30 ===
+
+--- imagedownloadertool.log from default ---
+[2025-05-26 10:50:11,281] [INFO] [ImageDownloaderTool.__init__:20] - Tool 'ImageDownloaderTool' initialized with config: {'save_dir': 'app/static/output/image'}
+[2025-05-26 10:50:12,067] [ERROR] [ImageDownloaderTool.execute:74] - Gagal mengunduh gambar dari Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 438, in parse_url
+    host = _normalize_host(host, scheme)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 324, in _normalize_host
+    b".".join([_idna_encode(label) for label in host.split(".")]),
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 324, in <listcomp>
+    b".".join([_idna_encode(label) for label in host.split(".")]),
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 342, in _idna_encode
+    raise LocationParseError(
+urllib3.exceptions.LocationParseError: Failed to parse: Name ' The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit' is not a valid IDNA label
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 434, in prepare_url
+    scheme, auth, host, port, path, query, fragment = parse_url(url)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\urllib3\util\url.py", line 449, in parse_url
+    raise LocationParseError(source_url) from e
+urllib3.exceptions.LocationParseError: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\app\tools\custom\image_downloader.py", line 53, in execute
+    response = requests.get(image_url, stream=True, timeout=15)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\sessions.py", line 575, in request
+    prep = self.prepare_request(req)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\sessions.py", line 486, in prepare_request
+    p.prepare(
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\.venv\lib\site-packages\requests\models.py", line 436, in prepare_url
+    raise InvalidURL(*e.args)
+requests.exceptions.InvalidURL: Failed to parse: Imagine Naruto Uzumaki captured in a striking portrait, rendered with hyper-realistic detail and cinematic flair. The scene is set during dusk, where the warm amber glow of a setting sun filters through a dense forest of towering, ancient pines. The golden light cascades softly onto Naruto�s figure, casting elongated shadows and emphasizing the textures of his iconic orange and black shinobi outfit. 
+
+His spiky blond hair is meticulously illustrated strand by strand, each lock catching subtle highlights, as if a gentle breeze rustles it lightly. The vivid blue of his eyes pierces forward with intense resolve, mirrored by the faint but sharp whisker marks on his cheeks, lending authenticity and emotional depth. His headband, bearing the Leaf Village emblem, gleams with a brushed metal finish, reflecting the interplay of light and shadow.
+
+The textile of his cloak and undershirt reveals intricate weave patterns and subtle wear�mud smudges, slight tears�signs of countless battles fought. Sweat beads form on his forehead and neck, caught in the glow, enhancing realism. In the background, the forest�s rich textures�rough bark, delicate leaves, patches of moss�are softly blurred with a careful depth of field, ensuring Naruto remains the unmistakable focus.
+
+Subtle environmental elements like swirling dust motes and drifting cherry blossom petals add movement and a contemplative mood. The composition balances medium close-up framing with a slight upward angle, empowering Naruto�s stance and hinting at his indomitable spirit. The overall color palette melds warm oranges, deep greens, and shadowed blues, harmonizing natural elements with the dynamic energy Naruto embodies. This is concept art that tells a living story, inviting viewers into a moment of quiet strength and boundless determination.
+
+--- imagegenagent_agent.log from default ---
+[2025-05-26 10:50:11,294] [INFO] [ImageGenAgent.ImageGenAgent.log:30] - [ImageGenAgent] Calling LLM with prompt: A highly detailed and realistic description of buatkan saya gambar naruto, illustrated with vivid imagery and professional narrative tone. The scene is described with cinematic lighting, rich textures, and precise visual composition, as if it were concept art for a AAA video game or a high-end digital magazine. The background complements the subject naturally, with carefully chosen depth and environmental coherence to enhance immersion.

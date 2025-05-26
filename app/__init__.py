@@ -25,6 +25,6 @@ def create_app(config_class=Config):
     from app.routes.base_route import main
     from app.routes.agents_route import agents_api
     app.register_blueprint(main, url_prefix='/')
-    app.register_blueprint(agents_api, url_prefix='/api/agents')
+    app.register_blueprint(agents_api, url_prefix='/agents')
 
     return app

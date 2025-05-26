@@ -29,7 +29,6 @@ def archive_and_clear_logs():
             with open(archive_path, "a", encoding="utf-8") as archive:
                 archive.write(f"\n\n=== LOG ARCHIVE @ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ===\n")
 
-                # Scan semua subfolder di logs/
                 if not os.path.exists(BASE_LOG_ROOT):
                     logger.warning(f"Log root folder tidak ditemukan: {BASE_LOG_ROOT}")
                     return
@@ -45,12 +44,18 @@ def archive_and_clear_logs():
                         log_path = os.path.join(subfolder_path, log_file)
 
                         if os.path.getsize(log_path) > 0:
-                            with open(log_path, "r", encoding="utf-8") as lf:
-                                archive.write(f"\n--- {log_file} from {subfolder} ---\n")
-                                archive.write(lf.read())
+                            try:
+                                with open(log_path, "r", encoding="utf-8", errors="replace") as lf:
+                                    archive.write(f"\n--- {log_file} from {subfolder} ---\n")
+                                    archive.write(lf.read())
+                            except Exception as read_error:
+                                logger.warning(f"Failed to read {log_file}: {read_error}")
 
                             # Clear log file setelah diarsipkan
-                            open(log_path, "w").close()
+                            try:
+                                open(log_path, "w").close()
+                            except Exception as clear_error:
+                                logger.warning(f"Failed to clear {log_file}: {clear_error}")
 
         logger.info(f"Archived and cleared logs for {timestamp}")
 

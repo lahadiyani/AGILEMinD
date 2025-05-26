@@ -17,6 +17,7 @@
     <header class="text-center mb-10">
         <h1 class="text-4xl font-bold text-gray-800 drop-shadow-sm">🧠 AI Agent Framework</h1>
         <p class="text-gray-600 mt-2">Run and test your agents easily</p>
+        <a href="/documentation/full_documentation.md" class="documentation" target="_blank">Full Documentation</a>
     </header>
 
     <main class="w-full max-w-xl bg-[#e0e5ec] p-6 rounded-xl shadow-inner shadow-white/30 border border-gray-200">
@@ -26,7 +27,8 @@
                 <option value="researcher">Researcher</option>
                 <option value="coder">Coder</option>
                 <option value="planner">Planner</option>
-                <option value="pollinations">Pollinations</option>
+                <option value="textgen">Text Generation</option>
+                <option value="imagegen">Image Generation</option>
             </select>
         </section>
 
@@ -34,6 +36,9 @@
             <label for="model-select" class="block text-sm font-medium text-gray-700 mb-2">Select Model:</label>
             <select id="model-select" class="w-full px-4 py-2 rounded-md shadow-md bg-[#e0e5ec] border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
                 <option value="">Default Model</option>
+                <option value="flux">flux</option>
+                <option value="turbo">Turbo</option>
+                <option value="gptimage">GPT</option>
             </select>
         </section>
 
@@ -48,11 +53,27 @@
         </button>
 
         <section class="output mt-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">Output:</h3>
-            <div id="agent-output" class="bg-white p-4 rounded-lg shadow-inner text-sm text-gray-700 border border-gray-300 prose prose-sm max-w-none">
+            <div class="flex flex-row items-center gap-2 bg-gray-100 rounded-t-xl px-4 py-2 border-b border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-800 mb-0 mr-6">Output:</h3>
+                <div class="flex gap-1">
+                    <button class="button-preview tab-btn rounded-t-md px-5 py-1 font-semibold text-gray-700 transition-colors duration-150 focus:outline-none border-b-2 border-transparent hover:bg-blue-50">Preview</button>
+                    <button class="button-raw tab-btn rounded-t-md px-5 py-1 font-semibold text-gray-700 transition-colors duration-150 focus:outline-none border-b-2 border-transparent hover:bg-blue-50">Raw JSON</button>
+                    <button class="button-logs tab-btn rounded-t-md px-5 py-1 font-semibold text-gray-700 transition-colors duration-150 focus:outline-none border-b-2 border-transparent hover:bg-blue-50">Logs</button>
+                </div>
+            </div>
+            <div id="agent-output" class="bg-white p-6 rounded-b-xl rounded-tr-xl shadow-inner text-base text-gray-800 border border-t-0 border-gray-200 prose prose-sm max-w-none preview hidden">
                 <p class="text-gray-500">Waiting for agent execution...</p>
             </div>
+            <div id="agent-output-raw" class="bg-gray-50 p-6 rounded-b-xl rounded-tr-xl shadow-inner text-base text-gray-800 border border-t-0 border-gray-200 font-mono prose prose-sm max-w-none raw hidden overflow-auto">
+                <pre id="json-output" class="text-gray-500 whitespace-pre overflow-auto break-normal max-w-full">
+                    Waiting for agent execution...
+                </pre>
+            </div>
+            <div id="agent-output-logs" class="bg-gray-50 p-6 rounded-b-xl rounded-tr-xl shadow-inner text-base text-gray-800 border border-t-0 border-gray-200 font-mono prose prose-sm max-w-none logs hidden">
+                <pre id="logs-output" class="text-gray-500 whitespace-pre-wrap break-words">Waiting for agent execution...</pre>
+            </div>
         </section>
+
     </main>
 
     <footer class="mt-12 text-center text-sm text-gray-500">
@@ -62,6 +83,6 @@
         </a>
     </footer>
 
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>

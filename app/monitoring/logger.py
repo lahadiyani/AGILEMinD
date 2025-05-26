@@ -1,31 +1,32 @@
 import logging
 import os
 
-# Root folder logging untuk agents dan chains
+# Root folder logging
 BASE_LOG_DIR = os.path.join(os.path.dirname(__file__), 'logs')
-AGENTS_LOG_DIR = os.path.join(BASE_LOG_DIR, 'agents')
-CHAINS_LOG_DIR = os.path.join(BASE_LOG_DIR, 'chains')
 
-# Buat folder jika belum ada
-os.makedirs(AGENTS_LOG_DIR, exist_ok=True)
-os.makedirs(CHAINS_LOG_DIR, exist_ok=True)
-
-def get_logger(name: str, filename: str, component: str = 'agents') -> logging.Logger:
+def ensure_log_dir(component: str) -> str:
     """
-    Mendapatkan logger untuk komponen tertentu (agents/chains).
+    Membuat folder log untuk komponen tertentu jika belum ada.
+    :param component: Nama subfolder (misal: 'agents', 'chains', dll)
+    :return: Path folder log
+    """
+    log_dir = os.path.join(BASE_LOG_DIR, component)
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+    return log_dir
+
+def get_logger(name: str, filename: str, component: str = 'default') -> logging.Logger:
+    """
+    Mendapatkan logger untuk komponen/folder apapun.
     :param name: Nama logger
     :param filename: Nama file log (misal: agent1.log)
-    :param component: 'agents' atau 'chains'
+    :param component: Nama subfolder log (misal: 'agents', 'chains', 'tasks', dll)
     :return: objek Logger
     """
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
 
-    if component == 'chains':
-        log_dir = CHAINS_LOG_DIR
-    else:
-        log_dir = AGENTS_LOG_DIR
-
+    log_dir = ensure_log_dir(component)
     log_path = os.path.join(log_dir, filename)
     file_handler = logging.FileHandler(log_path)
     file_handler.setLevel(logging.DEBUG)
@@ -48,3 +49,4 @@ def get_logger(name: str, filename: str, component: str = 'agents') -> logging.L
 # Contoh penggunaan:
 # agent_logger = get_logger('my_agent', 'agent1.log', component='agents')
 # chain_logger = get_logger('my_chain', 'chain1.log', component='chains')
+# task_logger = get_logger('my_task', 'task1.log', component='tasks')
