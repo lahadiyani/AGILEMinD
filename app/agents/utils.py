@@ -1,7 +1,7 @@
 from app.agents.registry import AGENT_REGISTRY
-from app.monitoring.logger import get_agent_logger
+from app.monitoring.logger import get_logger
 
-logger = get_agent_logger("AgentUtils", "utils.log")
+logger = get_logger("AgentUtils", "utils.log")
 
 def validate_agent_config(config: dict) -> bool:
     required_keys = ["agent_name", "params"]
