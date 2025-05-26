@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from app.monitoring.logger import get_agent_logger
+from app.monitoring.logger import get_logger
 from typing import Optional, List, Any
 from app.agents.types import AgentTool, AgentMemory, AgentLLM
 
@@ -11,17 +11,19 @@ class BaseAgent(ABC):
                  llm: Optional[AgentLLM] = None,
                  memory: Optional[AgentMemory] = None,
                  tools: Optional[List[AgentTool]] = None,
+                 models: Optional[List[str]] = None,
                  logging_enabled: bool = True):
 
         self.name = name
         self.description = description
         self.prompt = prompt
         self.llm = llm
+        self.models = llm.model_name if llm else None
         self.memory = memory
         self.tools = tools or []
         self.logging_enabled = logging_enabled
 
-        self.logger = get_agent_logger(f"{self.__class__.__name__}.{self.name}", f"{self.name.lower()}_agent.log") if logging_enabled else None
+        self.logger = get_logger(f"{self.__class__.__name__}.{self.name}", f"{self.name.lower()}_agent.log") if logging_enabled else None
 
     def log(self, message: str):
         if self.logger:
@@ -38,8 +40,10 @@ class BaseAgent(ABC):
             raise ValueError("Prompt not configured.")
         return self.prompt.replace("{input}", input_text)
 
-    def call_llm(self, prompt: str) -> str:
-        self.log(f"Calling LLM with prompt: {prompt}")
+    def call_llm(self, prompt: str, model: str = None) -> str:
+        self.log(f"Calling LLM with prompt: {prompt}" + (f" and model: {model}" if model else ""))
+        if model:
+            return self.llm.generate(prompt, model=model)
         return self.llm.generate(prompt)
 
     def postprocess(self, response: Any) -> Any:
@@ -51,12 +55,12 @@ class BaseAgent(ABC):
             self.memory.save(input_text, output_text)
             self.log("Saved to memory.")
 
-    def run(self, input_text: str) -> Any:
+    def run(self, input_text: str, model: str = None) -> Any:
         try:
             self.validate()
-            self.log(f"Input: {input_text}")
+            self.log(f"Input: {input_text}" + (f", Model: {model}" if model else ""))
             prompt = self.build_prompt(input_text)
-            result = self.call_llm(prompt)
+            result = self.call_llm(prompt, model=model)
             self.remember(input_text, result)
             return self.postprocess(result)
         except Exception as e:
