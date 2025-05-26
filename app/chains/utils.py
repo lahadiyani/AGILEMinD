@@ -2,9 +2,9 @@
 
 import time
 from typing import Callable, Any
-from app.monitoring.logger import get_agent_logger
+from app.monitoring.logger import get_logger
 
-logger = get_agent_logger("ChainUtils", "utils.log")
+logger = get_logger("ChainUtils", "utils.log")
 
 def timeit(func: Callable) -> Callable:
     """

@@ -3,9 +3,9 @@
 from app.chains.base_chain import BaseChain
 from app.chains.custom.custom_chain import CustomChain  # Contoh chain custom yang kamu buat
 
-from app.monitoring.logger import get_agent_logger
+from app.monitoring.logger import get_logger
 
-logger = get_agent_logger("ChainRegistry", "registry.log")
+logger = get_logger("ChainRegistry", "registry.log")
 
 # Registry untuk semua chain yang tersedia di framework
 CHAIN_REGISTRY = {

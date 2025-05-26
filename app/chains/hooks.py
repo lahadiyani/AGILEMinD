@@ -1,9 +1,9 @@
 # app/chain/hooks.py
 
 from typing import Callable, List, Any
-from app.monitoring.logger import get_agent_logger
+from app.monitoring.logger import get_logger
 
-logger = get_agent_logger("ChainHooks", "hooks.log")
+logger = get_logger("ChainHooks", "hooks.log")
 
 class Hooks:
     """
