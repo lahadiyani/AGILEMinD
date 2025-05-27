@@ -1,11 +1,18 @@
 from app.loaders.base_loader import BaseLoader
 from app.monitoring.logger import get_logger
 from app.loaders.custom.pdf_loader import PDFLoader
+from app.loaders.custom.image_loader import ImageLoader  # Contoh loader lain
 
 logger = get_logger("LoaderRegistry", "loader_registry.log", component="loaders")
 
 LOADER_REGISTRY = {
     "PDFLoader": PDFLoader,
+<<<<<<< HEAD
+    "ImageLoader": ImageLoader
+    # Anda bisa menambahkan loader lain di sini
+    # "AnotherLoader": AnotherLoader,
+=======
+>>>>>>> fd8f606146b90d91279277340bc0ca95872ee949
 }
 
 def register_loader(name: str, cls: type, overwrite: bool = False):

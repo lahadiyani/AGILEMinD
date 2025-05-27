@@ -1,12 +1,18 @@
 import os
 import requests
 from app.llms.base_llm import BaseLLM
+from app.loaders.registry import get_loader
+from config.default import Config
 
 class PollinationsLLM(BaseLLM):
-    POLLINATIONS_API_BASE_URL = os.getenv("POLLINATIONS_API_BASE_URL", "https://text.pollinations.ai")
-    POLLINATIONS_IMAGE_URL = os.getenv("POLLINATIONS_IMAGE_URL", "https://image.pollinations.ai/prompt")
-    POLLINATIONS_IMAGE_MODELS_URL = os.getenv("POLLINATIONS_IMAGE_MODELS_URL", "https://image.pollinations.ai/models")
-    POLLINATIONS_TEXT_MODELS_URL = os.getenv("POLLINATIONS_TEXT_MODELS_URL", "https://text.pollinations.ai/models")
+    POLLINATIONS_API_BASE_URL = Config.POLLINATIONS_API_BASE_URL
+    POLLINATIONS_IMAGE_URL = Config.POLLINATIONS_IMAGE_URL
+    POLLINATIONS_IMAGE_MODELS_URL = Config.POLLINATIONS_IMAGE_MODELS_URL
+    POLLINATIONS_TEXT_MODELS_URL = Config.POLLINATIONS_TEXT_MODELS_URL
+    
+    @property
+    def model_name(self):
+        return "pollinations"
 
     def get_available_image_models(self):
         try:
@@ -52,3 +58,12 @@ class PollinationsLLM(BaseLLM):
             return f"Error: {response.status_code} - {response.text}"
         except Exception as e:
             return f"Error: {str(e)}"
+<<<<<<< HEAD
+        
+    def get_image_url(self, prompt: str, model: str = None) -> str:
+        url = f"{self.POLLINATIONS_IMAGE_URL}/{prompt}"
+        if model:
+            url += f"?model={model}"
+        return url
+=======
+>>>>>>> fd8f606146b90d91279277340bc0ca95872ee949

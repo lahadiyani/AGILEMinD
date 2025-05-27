@@ -2,7 +2,11 @@
 
 import inspect
 from typing import Type
+<<<<<<< HEAD
+from app.tools.base_tool import BaseTool
+=======
 from app.tools.base_tools import BaseTool
+>>>>>>> fd8f606146b90d91279277340bc0ca95872ee949
 
 def is_tool_class(obj: object) -> bool:
     """

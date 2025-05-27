@@ -14,6 +14,11 @@ class Config:
     MEMORY_STORE_TYPE=os.getenv("MEMORY_STORE_TYPE", "faiss").lower()
     FAISS_INDEX_PATH = os.getenv("FAISS_INDEX_PATH", "./vectorstore/index.faiss")
 
+    POLLINATIONS_API_BASE_URL = os.getenv("POLLINATIONS_API_BASE_URL", "https://text.pollinations.ai")
+    POLLINATIONS_IMAGE_URL = os.getenv("POLLINATIONS_IMAGE_URL", "https://image.pollinations.ai/prompt")
+    POLLINATIONS_IMAGE_MODELS_URL = os.getenv("POLLINATIONS_IMAGE_MODELS_URL", "https://image.pollinations.ai/models")
+    POLLINATIONS_TEXT_MODELS_URL = os.getenv("POLLINATIONS_TEXT_MODELS_URL", "https://text.pollinations.ai/models")
+
 class DevelopmentConfig(Config):
     DEBUG = True
     ENV = 'development'
