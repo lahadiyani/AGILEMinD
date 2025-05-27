@@ -12,7 +12,6 @@ elasticsearch==9.0.1
 chromadb==1.0.10
 
 # AI and ML
-langchain==0.0.267
 openai==0.28.0
 faiss-cpu==1.7.4
 

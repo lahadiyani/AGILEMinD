@@ -1,11 +1,7 @@
 # app/tools/builder.py
 
 from typing import Any, Dict, Optional
-<<<<<<< HEAD
 from app.tools.base_tool import BaseTool
-=======
-from app.tools.base_tools import BaseTool
->>>>>>> fd8f606146b90d91279277340bc0ca95872ee949
 from app.tools.registry import get_tool
 
 class ToolBuilder:
