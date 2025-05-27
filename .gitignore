@@ -19,6 +19,8 @@ scripts/deploy.sh
 instance/
 *.db
 *.sqlite3
+monitoring/archived/
+monitoring/logs/
 
 # Pytest / coverage
 .pytest_cache/
