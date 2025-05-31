@@ -1,8 +1,8 @@
-# AGILEMinD - Starter Framework AI Agent
+# Soami - Starter Framework AI Agent
 
 ![logo](app/static/assets/icon.jpg)
 
-**AGILEMinD** adalah sebuah framework starter modular yang bisa kamu kustomisasi untuk membangun dan menjalankan AI Agent (seperti `Researcher`, `Planner`, dan `Coder`) berbasis Python, Flask, dan LangChain. Cocok untuk membangun prototipe AGI atau alat bantu AI dengan sistem orchestrator, memory, tools, dan vectorstore.
+**Soami** adalah sebuah framework starter modular yang bisa kamu kustomisasi untuk membangun dan menjalankan AI Agent (seperti `Researcher`, `Planner`, dan `Coder`) berbasis Python, Flask, dan LangChain. Cocok untuk membangun prototipe AGI atau alat bantu AI dengan sistem orchestrator, memory, tools, dan vectorstore.
 
 ---
 
@@ -136,7 +136,7 @@ pytest tests/
 
 ---
 
-## Cara Membangun AGI dengan AGILEMinD
+## Cara Membangun AGI dengan Soami
 
 [Tutorial bahasa Indonesia](documentation/tutorial.md)
 [Tutorial dalam Bahasa Inggris](documentation/tutorial_eng.md)

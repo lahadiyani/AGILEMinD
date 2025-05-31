@@ -65,6 +65,7 @@ class ElasticsearchStore(MemoryStore):
     def persist(self):
         # No-op, Elasticsearch handles persistence automatically
         pass
+<<<<<<< HEAD
 
     def clear(self):
         """Menghapus semua dokumen di index."""
@@ -75,3 +76,5 @@ class ElasticsearchStore(MemoryStore):
         """Mengambil semua dokumen dari index."""
         res = self.es.search(index=self.index_name, body={"query": {"match_all": {}}, "size": 1000})
         return [hit["_source"] for hit in res["hits"]["hits"]]
+=======
+>>>>>>> fd8f606146b90d91279277340bc0ca95872ee949

@@ -58,9 +58,12 @@ class PollinationsLLM(BaseLLM):
             return f"Error: {response.status_code} - {response.text}"
         except Exception as e:
             return f"Error: {str(e)}"
+<<<<<<< HEAD
         
     def get_image_url(self, prompt: str, model: str = None) -> str:
         url = f"{self.POLLINATIONS_IMAGE_URL}/{prompt}"
         if model:
             url += f"?model={model}"
         return url
+=======
+>>>>>>> fd8f606146b90d91279277340bc0ca95872ee949
