@@ -9,6 +9,9 @@ python-dotenv==1.0.0
 pymysql==1.1.0
 mysqlclient==2.2.0
 elasticsearch==8.10.0
+sqlalchemy~=2.0
+psycopg[binary]~=3.1
+pgvector~=0.2
 
 # AI and ML
 langchain==0.0.267
