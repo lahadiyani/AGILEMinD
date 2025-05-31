@@ -1,8 +1,8 @@
 # app/memory/base_memory.py
 
 from abc import ABC, abstractmethod
+from typing import List, Any
 from typing import List, Dict, Any, Optional
-
 
 class MemoryStore(ABC):
     """
@@ -46,6 +46,14 @@ class MemoryStore(ABC):
         pass
 
     @abstractmethod
+    def add_documents(self, docs: List[dict]):
+        """Add documents to the vector store."""
+        pass
+
+    @abstractmethod
+    def similarity_search(self, query: Any, top_k: int = 5) -> List[dict]:
+        """Return top_k documents similar to the query."""
+
     def persist(self) -> None:
         """
         Persists memory state to disk or external storage.
