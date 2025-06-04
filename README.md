@@ -2,7 +2,7 @@
 
 ![logo](app/static/assets/icon.jpg)
 
-**Soami** adalah sebuah framework starter modular yang bisa kamu kustomisasi untuk membangun dan menjalankan AI Agent (seperti `Researcher`, `Planner`, dan `Coder`) berbasis Python, Flask, dan LangChain. Cocok untuk membangun prototipe AGI atau alat bantu AI dengan sistem orchestrator, memory, tools, dan vectorstore.
+**Soami** adalah sebuah framework starter modular yang bisa kamu kustomisasi untuk membangun dan menjalankan AI Agent buatanmu. Cocok untuk membangun Ai agent atau alat bantu AI dengan sistem orchestrator, memory, tools, dan vectorstore.
 
 ---
 
@@ -132,7 +132,7 @@ pytest tests/
 
 * [ ] Integrasi WebSocket untuk feedback agent secara real-time
 * [ ] Sistem RAG bawaan
-* [ ] Dukungan multiple backend memory (FAISS, Elastic)
+* [ ] Dukungan multiple backend memory (FAISS, Elastic, pgvector)
 
 ---
 

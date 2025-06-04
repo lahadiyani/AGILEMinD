@@ -22,6 +22,9 @@ instance/
 monitoring/archived/*
 monitoring/logs/**
 
+#cache output
+app/static/output/image/*
+
 # Pytest / coverage
 .pytest_cache/
 tests/
