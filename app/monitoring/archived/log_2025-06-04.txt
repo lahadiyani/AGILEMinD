@@ -1,0 +1,70 @@
+
+
+=== LOG ARCHIVE @ 2025-06-04 10:09:23 ===
+
+
+=== LOG ARCHIVE @ 2025-06-04 10:09:27 ===
+
+
+=== LOG ARCHIVE @ 2025-06-04 10:22:53 ===
+
+--- utils.log from default ---
+[2025-06-04 10:13:16,703] [INFO] [AgentUtils.validate_agent_config:19] - Validated config for agent: researcher
+[2025-06-04 10:18:13,475] [INFO] [AgentUtils.validate_agent_config:19] - Validated config for agent: researcher
+
+
+=== LOG ARCHIVE @ 2025-06-04 10:23:16 ===
+
+
+=== LOG ARCHIVE @ 2025-06-04 10:23:27 ===
+
+
+=== LOG ARCHIVE @ 2025-06-04 10:23:35 ===
+
+
+=== LOG ARCHIVE @ 2025-06-04 10:23:42 ===
+
+
+=== LOG ARCHIVE @ 2025-06-04 10:39:23 ===
+
+--- imagedownloadertool.log from default ---
+[2025-06-04 10:26:12,376] [INFO] [ImageDownloaderTool.__init__:20] - Tool 'ImageDownloaderTool' initialized with config: {'save_dir': 'app/static/output/image/'}
+[2025-06-04 10:26:17,102] [INFO] [ImageDownloaderTool.execute:69] - Image downloaded successfully to C:\Users\ASUS\Documents\Code\RAG-Projects\pdf-ui-create\app\static\output\image\7ad0dbfb351834dc9ff014a5bbd5f0a9.png
+
+--- researcheragent_agent.log from default ---
+[2025-06-04 10:23:55,844] [INFO] [ResearcherAgent.ResearcherAgent.log:30] - [ResearcherAgent] Input: buatkan stktur makalah sederhana
+[2025-06-04 10:23:55,844] [INFO] [ResearcherAgent.ResearcherAgent.log:30] - [ResearcherAgent] Calling LLM with prompt: You are a research assistant. Your job is to analyze and provide detailed information about topics. Use the following format of respons or format:
+
+1. Topic Overview
+2. Key Points
+3. Supporting Evidence
+4. Conclusion
+
+Please provide comprehensive and well-structured research findings.
+
+here the question: buatkan stktur makalah sederhana
+[2025-06-04 10:24:03,010] [INFO] [ResearcherAgent.ResearcherAgent.log:30] - [ResearcherAgent] Raw response: 1. Topic Overview  
+A simple paper structure (struktur makalah sederhana) refers to a basic and clear organization of an academic or formal paper, designed to present ideas effectively and logically. This format helps writers, especially beginners, deliver their message in a coherent manner.
+
+2. Key Points  
+- Title Page: Contains the title of the paper, author name, affiliation, and date.  
+- Introduction: Explains the background, purpose, and scope of the paper.  
+- Body (Content): Divided into sections and subsections presenting the main points, data, arguments, and analysis.  
+- Conclusion: Summarizes the findings or main points and may include suggestions or reflections.  
+- References: Lists sources used in the paper (if applicable).
+
+3. Supporting Evidence  
+- Academic writing guides often emphasize the importance of a clear introduction to orient readers.  
+- Research methodology books recommend dividing the body into manageable sections for clarity.  
+- Sample papers commonly show a conclusion that wraps up arguments effectively without introducing new information.  
+- Proper referencing aligns with academic integrity, avoiding plagiarism and strengthening the paper�s credibility.
+
+4. Conclusion  
+A simple paper structure typically includes a title page, introduction, body, conclusion, and references. This arrangement supports clarity and logical flow, making it easier for readers to understand the writer�s ideas. It serves as a fundamental guide for anyone preparing an academic or formal paper, ensuring the content is organized and accessible.
+
+--- utils.log from default ---
+[2025-06-04 10:23:55,844] [INFO] [AgentUtils.validate_agent_config:19] - Validated config for agent: researcher
+[2025-06-04 10:26:12,374] [INFO] [AgentUtils.validate_agent_config:19] - Validated config for agent: imagegen
+
+
+=== LOG ARCHIVE @ 2025-06-04 10:53:42 ===
