@@ -5,7 +5,7 @@ from app.llms.registry import get_llm
 llm = get_llm("pollinations")
 
 class PlannerAgent(BaseAgent):
-    def __init__(self):
+    def __init__(self, **kwargs):
         super().__init__(
             name="PlannerAgent",
             description="Agent untuk merencanakan tugas berdasarkan deskripsi yang diberikan.",
