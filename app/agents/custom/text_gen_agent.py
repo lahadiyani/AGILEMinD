@@ -4,7 +4,7 @@ from app.llms.registry import get_llm
 
 llm = get_llm("pollinations")
 class TextGenAgent(BaseAgent):
-    def __init__(self):
+    def __init__(self, **kwargs):
         super().__init__(
             name="TextGenAgent",
             description="Agent untuk menghasilkan teks berdasarkan deskripsi.",

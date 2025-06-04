@@ -5,7 +5,7 @@ from app.llms.registry import get_llm
 llm = get_llm("pollinations")
 
 class CoderAgent(BaseAgent):
-    def __init__(self):
+    def __init__(self, **kwargs):
         super().__init__(
             name="CoderAgent",
             description="Agent untuk menghasilkan kode berdasarkan deskripsi tugas.",

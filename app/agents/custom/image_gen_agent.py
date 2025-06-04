@@ -8,7 +8,7 @@ llm = get_llm("pollinations")
 load = get_loader("ImageLoader")
 
 class ImageGenAgent(BaseAgent):
-    def __init__(self):
+    def __init__(self, **kwargs):
         super().__init__(
             name="ImageGenAgent",
             description="Agent untuk menghasilkan gambar berdasarkan deskripsi.",
