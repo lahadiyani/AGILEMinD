@@ -1,34 +1,27 @@
 import os
-from app.monitoring.logger import get_logger
-
-logger = get_logger("LoaderUtils", "loader_utils.log", component="loaders")
 
 def validate_path(path: str, must_be_file: bool = False, must_be_dir: bool = False):
     """
-    Validasi keberadaan path dan tipe path.
+    Validate the existence and type of a given path.
 
     Args:
-        path (str): Path yang ingin divalidasi.
-        must_be_file (bool): Jika True, path harus file.
-        must_be_dir (bool): Jika True, path harus direktori.
+        path (str): The path to validate.
+        must_be_file (bool): If True, the path must be a file.
+        must_be_dir (bool): If True, the path must be a directory.
 
     Raises:
-        FileNotFoundError: Jika path tidak ada.
-        ValueError: Jika tipe path tidak sesuai.
-        PermissionError: Jika path tidak dapat dibaca.
+        FileNotFoundError: If the path does not exist.
+        ValueError: If the path type does not match expectations.
+        PermissionError: If the path is not readable.
     """
     if not os.path.exists(path):
-        logger.error(f"Path tidak ditemukan: {path}")
-        raise FileNotFoundError(f"Path tidak ditemukan: {path}")
+        raise FileNotFoundError(f"Path not found: {path}")
 
     if must_be_file and not os.path.isfile(path):
-        logger.error(f"Path bukan file: {path}")
-        raise ValueError(f"Path bukan file: {path}")
+        raise ValueError(f"Path is not a file: {path}")
 
     if must_be_dir and not os.path.isdir(path):
-        logger.error(f"Path bukan direktori: {path}")
-        raise ValueError(f"Path bukan direktori: {path}")
+        raise ValueError(f"Path is not a directory: {path}")
 
     if not os.access(path, os.R_OK):
-        logger.error(f"Tidak punya akses baca ke path: {path}")
-        raise PermissionError(f"Tidak punya akses baca ke path: {path}")
+        raise PermissionError(f"Read access denied for path: {path}")

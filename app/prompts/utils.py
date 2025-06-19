@@ -1,8 +1,6 @@
 import os
-from app.monitoring.logger import get_logger
 
 class PromptUtils:
-    logger = get_logger("PromptUtils", "prompts_utils.log")
     PROMPT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "prompts", "prompt"))
     _cache = {}
 
@@ -12,21 +10,20 @@ class PromptUtils:
         Load prompt text from file in PROMPT_DIR.
 
         Args:
-            filename (str): Nama file prompt.
+            filename (str): Name of the prompt file.
 
         Returns:
-            str: Konten prompt.
+            str: Prompt content.
 
         Raises:
-            FileNotFoundError: Jika file tidak ditemukan.
-            IOError: Jika gagal membaca file.
+            FileNotFoundError: If the file is not found.
+            IOError: If the file fails to read.
         """
         if filename in cls._cache:
             return cls._cache[filename]
 
         path = os.path.join(cls.PROMPT_DIR, filename)
         if not os.path.exists(path):
-            cls.logger.error(f"Prompt file tidak ditemukan: {path}")
             raise FileNotFoundError(f"Prompt file not found: {path}")
 
         try:
@@ -35,5 +32,4 @@ class PromptUtils:
                 cls._cache[filename] = content
                 return content
         except Exception as e:
-            cls.logger.error(f"Gagal baca prompt file {path}: {e}")
-            raise
+            raise IOError(f"Failed to read prompt file {path}: {e}")

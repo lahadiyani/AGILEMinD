@@ -1,0 +1,13 @@
+from typing import Protocol, Any, Optional
+
+class AgentTool(Protocol):
+    name: str
+    def run(self, *args, **kwargs) -> Any: ...
+
+class AgentMemory(Protocol):
+    def save(self, input_text: str, output_text: str) -> None: ...
+    def load(self, input_text: Optional[str] = None) -> Any: ...
+
+class AgentLLM(Protocol):
+    model_name: Optional[str]
+    def generate(self, prompt: str, model: Optional[str] = None) -> str: ...

@@ -2,65 +2,60 @@
 
 import inspect
 from typing import Type
-<<<<<<< HEAD
 from app.tools.base_tool import BaseTool
-=======
-from app.tools.base_tools import BaseTool
->>>>>>> fd8f606146b90d91279277340bc0ca95872ee949
 
 def is_tool_class(obj: object) -> bool:
     """
-    Cek apakah objek merupakan kelas turunan BaseTool.
-    
+    Check if the object is a class that inherits from BaseTool.
+
     Args:
-        obj: objek yang akan dicek.
-    
+        obj (object): The object to check.
+
     Returns:
-        bool: True jika obj adalah subclass BaseTool, False jika bukan.
+        bool: True if obj is a subclass of BaseTool, False otherwise.
     """
     return inspect.isclass(obj) and issubclass(obj, BaseTool)
 
 def get_tool_name(tool_cls: Type[BaseTool]) -> str:
     """
-    Ambil nama tool dari kelas tool.
-    
+    Get the name of a tool class.
+
     Args:
-        tool_cls: kelas tool.
-        
+        tool_cls (Type[BaseTool]): The tool class.
+
     Returns:
-        str: nama tool (default: nama kelas).
+        str: Name of the tool, defaulting to class name if 'name' attribute is not defined.
     """
     return getattr(tool_cls, "name", tool_cls.__name__)
 
 def safe_execute(tool_instance: BaseTool, *args, **kwargs):
     """
-    Jalankan method `execute` tool dengan penanganan error terstruktur.
-    
+    Safely execute the 'execute' method of a tool instance.
+
     Args:
-        tool_instance: instance dari tool.
-        *args, **kwargs: argumen untuk method execute.
-    
+        tool_instance (BaseTool): The tool instance.
+        *args: Positional arguments for the execute method.
+        **kwargs: Keyword arguments for the execute method.
+
     Returns:
-        hasil dari execute jika sukses.
-    
+        The result of the execute method.
+
     Raises:
-        Exception jika terjadi error saat execute (error sudah dicatat oleh tool).
+        Exception: Any exception raised by the execute method.
     """
     try:
         return tool_instance.execute(*args, **kwargs)
     except Exception as e:
-        # Biasanya logging sudah dilakukan di BaseTool.run
-        # Tapi untuk utility ini bisa buat penanganan khusus jika perlu
-        raise e
+        raise e  # Custom handling can be added here if needed
 
 def list_registered_tools(registry: dict) -> list[str]:
     """
-    Ambil daftar nama tool yang terdaftar pada registry tertentu.
-    
+    List all registered tool names in a given registry.
+
     Args:
-        registry (dict): dictionary registry tool.
-        
+        registry (dict): The tool registry dictionary.
+
     Returns:
-        list[str]: daftar nama tool yang terdaftar.
+        list[str]: List of registered tool names.
     """
     return list(registry.keys())

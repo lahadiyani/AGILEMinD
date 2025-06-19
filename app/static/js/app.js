@@ -6,16 +6,15 @@ marked.setOptions({
     gfm: true,
     headerIds: true,
     mangle: false,
-    sanitize: false,
+    sanitize: true,
     smartLists: true,
     smartypants: true,
-    xhtml: false,
     highlight(code, lang) {
         if (lang && hljs.getLanguage(lang)) {
             try {
                 return hljs.highlight(code, { language: lang }).value;
             } catch (err) {
-                console.error('Highlight error:', err);
+                console.warn('Highlight.js error:', err);
             }
         }
         return code;
@@ -23,28 +22,32 @@ marked.setOptions({
 });
 
 // ============================
-// Utils
+// Utility Functions
 // ============================
 
 function formatResponse(text) {
-    return marked.parse(text || "");
-}
-
-function clearPrompt() {
-    document.getElementById('prompt-input').value = '';
+    if (!text || typeof text !== 'string') {
+        return "<p class='text-gray-500'>⚠️ Invalid or empty response.</p>";
+    }
+    return marked.parse(text);
 }
 
 function setInnerHTML(id, html) {
-    document.getElementById(id).innerHTML = html;
+    const el = document.getElementById(id);
+    if (el) {
+        el.innerHTML = html;
+        setTimeout(() => {
+            el.querySelectorAll('pre code').forEach(block => {
+                hljs.highlightElement(block);
+            });
+        }, 0);
+    }
 }
 
 function setTextContent(id, text) {
-    document.getElementById(id).textContent = text;
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
 }
-
-// ============================
-// UI Output Tabs Handler
-// ============================
 
 function showOutputTab(tab) {
     const sections = {
@@ -53,37 +56,29 @@ function showOutputTab(tab) {
         logs: 'agent-output-logs'
     };
 
-    Object.values(sections).forEach(id => document.getElementById(id).classList.add('hidden'));
-    document.getElementById(sections[tab]).classList.remove('hidden');
-
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('border-blue-500', 'bg-blue-50'));
-    document.querySelector(`.button-${tab}`).classList.add('border-blue-500', 'bg-blue-50');
+    Object.entries(sections).forEach(([key, id]) => {
+        document.getElementById(id).classList.toggle('hidden', key !== tab);
+        document.querySelector(`.button-${key}`).classList.toggle('border-blue-500', key === tab);
+        document.querySelector(`.button-${key}`).classList.toggle('bg-blue-50', key === tab);
+    });
 }
-
-// ============================
-// Model Controls Toggle
-// ============================
 
 function updateModelControls() {
     const agent = document.getElementById('agent-select').value;
     const controls = document.getElementById('model-controls');
-    const modelSelect = document.getElementById('model-select');
-
-    if (agent === 'imagegen') {
-        controls.classList.remove('hidden');
-    } else {
-        controls.classList.add('hidden');
-        modelSelect.value = '';
+    controls.classList.toggle('hidden', agent !== 'imagegen');
+    if (agent !== 'imagegen') {
+        document.getElementById('model-select').value = '';
     }
 }
 
 // ============================
-// Main Agent Handler
+// Main Agent Runner
 // ============================
 
 function runAgent() {
     const agent = document.getElementById('agent-select').value;
-    const prompt = document.getElementById('prompt-input').value;
+    const prompt = document.getElementById('prompt-input').value.trim();
     const model = document.getElementById('model-select').value;
 
     if (!prompt) {
@@ -95,94 +90,68 @@ function runAgent() {
         return;
     }
 
-    // Initial loading
-    const loadingMsg = '⏳ Processing...';
-    setInnerHTML('agent-output', `<p class="text-gray-500">${loadingMsg}</p>`);
-    setTextContent('json-output', loadingMsg);
-    setTextContent('logs-output', loadingMsg);
+    const loading = '⏳ Processing...';
+    setInnerHTML('agent-output', `<p class="text-gray-500">${loading}</p>`);
+    setTextContent('json-output', loading);
+    setTextContent('logs-output', loading);
     showOutputTab('preview');
 
-    // Build request
-    const requestData = {
-        agent_type: agent,
-        prompt
-    };
-    if (agent === 'imagegen') {
-        requestData.model = model;
-    }
+    const requestData = { agent_type: agent, prompt };
+    if (agent === 'imagegen') requestData.model = model;
 
     fetch('/agents/run', {
         method: 'POST',
-        body: JSON.stringify(requestData),
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestData),
     })
-    .then(response => {
-        if (!response.ok) throw new Error(`Status: ${response.status}`);
-        return response.json();
+    .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
     })
     .then(data => {
-        setTextContent('json-output', JSON.stringify(data, null, 2));
-        setTextContent('logs-output', data.logs || data.log || 'No logs available.');
+        const rawJson = JSON.stringify(data, null, 2);
+        const logs = data.logs || data.log || 'ℹ️ No logs.';
 
-        if (data.error || data.status === 'error') {
-            setInnerHTML('agent-output', `<p class="text-red-500">❌ Error: ${data.error}</p>`);
-            showOutputTab('preview');
-            return;
+        let previewHtml = '⚠️ No result.';
+
+        const agentResult = data.result?.result;
+        const isImageGen = agent === 'imagegen' || data.result?.agent_name?.toLowerCase().includes('imagegen');
+
+        if (isImageGen && agentResult?.image_path) {
+            previewHtml = `
+                <p><strong>Deskripsi:</strong> ${agentResult.image_description}</p>
+                <p><strong>Model:</strong> ${agentResult.model}</p>
+                <img src="${agentResult.image_path}" alt="Generated Image" class="mt-4 border rounded shadow max-w-full h-auto" />
+            `;
+        } else if (typeof agentResult === 'string') {
+            previewHtml = formatResponse(agentResult);
+        } else if (typeof data.result === 'string') {
+            previewHtml = formatResponse(data.result);
+        } else if (typeof data.output === 'string') {
+            previewHtml = formatResponse(data.output);
         }
 
-        // If image response
-        if (data.result?.image_path) {
-            const imgHTML = `
-                <div class="text-center">
-                    <img src="${data.result.image_path}" alt="Generated Image" class="max-w-full rounded-lg shadow-lg"
-                        onerror="this.onerror=null; this.src=''; this.alt='Failed to load image'; this.parentElement.innerHTML += '<p class=\'text-red-500 mt-2\'>❌ Failed to load image</p>';" />
-                    <p class="mt-2 text-sm text-gray-600">Generated image for prompt: "${prompt}"</p>
-                    ${(agent === 'imagegen') ? `<p class="text-sm text-gray-500">Using model: ${model || 'Default Model'}</p>` : ''}
-                </div>`;
-            setInnerHTML('agent-output', imgHTML);
-            clearPrompt();
-            showOutputTab('preview');
-            return;
-        }
-
-        // If text response
-        const formatted = formatResponse(data.result || data.response || '');
-        const responseHTML = `
-            <div class="space-y-4">
-                <div class="text-sm text-gray-600">Agent: ${data.agent_name || data.agent_type || agent}</div>
-                <div class="text-sm text-gray-600">Prompt: "${prompt}"</div>
-                ${(agent === 'imagegen') ? `<div class="text-sm text-gray-600">Model: ${model || 'Default Model'}</div>` : ''}
-                <div class="mt-4 markdown-content">${formatted}</div>
-            </div>`;
-        setInnerHTML('agent-output', responseHTML);
-
-        // Re-highlight all code blocks
-        document.querySelectorAll('.markdown-content pre code').forEach(block => hljs.highlightBlock(block));
-
-        clearPrompt();
+        setInnerHTML('agent-output', previewHtml);
+        setTextContent('json-output', rawJson);
+        setTextContent('logs-output', logs);
         showOutputTab('preview');
     })
-    .catch(error => {
-        const errMsg = `❌ Error: ${error}`;
-        setInnerHTML('agent-output', `<p class="text-red-500">${errMsg}</p>`);
-        setTextContent('json-output', errMsg);
-        setTextContent('logs-output', errMsg);
+    .catch(err => {
+        const errorMsg = `❌ Error: ${err.message}`;
+        setInnerHTML('agent-output', `<p class="text-red-500">${errorMsg}</p>`);
+        setTextContent('json-output', errorMsg);
+        setTextContent('logs-output', errorMsg);
         showOutputTab('preview');
     });
 }
 
 // ============================
-// DOM Ready Event
+// Event Binding
 // ============================
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('agent-select').addEventListener('change', updateModelControls);
     document.querySelector('.button-preview').addEventListener('click', () => showOutputTab('preview'));
     document.querySelector('.button-raw').addEventListener('click', () => showOutputTab('raw'));
     document.querySelector('.button-logs').addEventListener('click', () => showOutputTab('logs'));
-
-    showOutputTab('preview');
-
-    const agentSelect = document.getElementById('agent-select');
-    agentSelect.addEventListener('change', updateModelControls);
-    updateModelControls();
 });

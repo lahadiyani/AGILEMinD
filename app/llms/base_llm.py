@@ -1,7 +1,11 @@
 from abc import ABC, abstractmethod
-from typing import Optional, Dict, Any, Union
+from typing import Optional, Dict, Any
 
 class BaseLLM(ABC):
+    """
+    Abstract base class for Large Language Models (LLMs).
+    """
+
     @abstractmethod
     def generate(self, prompt: str, model: Optional[str] = None, **kwargs: Any) -> str:
         """
@@ -22,14 +26,31 @@ class BaseLLM(ABC):
 
     @property
     @abstractmethod
-    def model_name(self) -> str:
-        """Return the name or identifier of the underlying model."""
+    def model_name(self) -> Optional[str]:
+        """
+        Return the name or identifier of the underlying model.
+        """
         pass
 
-    def reset(self):
-        """Reset any internal state/context if applicable."""
+    def reset(self) -> None:
+        """
+        Reset any internal state/context if applicable.
+        Override if your LLM implementation maintains state.
+        """
         pass
 
-    # Optional async method, jika framework mendukung
     async def agenerate(self, prompt: str, model: Optional[str] = None, **kwargs: Any) -> str:
+        """
+        Optional async method for generating text.
+        Override if your LLM implementation supports async.
+        """
         raise NotImplementedError("Async generation not supported.")
+
+    def get_metadata(self) -> Dict[str, Any]:
+        """
+        Optional: Return metadata about the LLM (e.g., version, provider, capabilities).
+        """
+        return {
+            "model_name": self.model_name,
+            "supports_async": hasattr(self, "agenerate"),
+        }

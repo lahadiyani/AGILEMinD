@@ -66,7 +66,7 @@ class ImageDownloaderTool(BaseTool):
                     if chunk:
                         f.write(chunk)
 
-            self.logger.info(f"Image downloaded successfully to {save_path}")
+            print(f"Image downloaded successfully to {save_path}")
 
             # Convert absolute path to relative path for web access
             rel_path = save_path.replace("\\", "/")
@@ -79,5 +79,5 @@ class ImageDownloaderTool(BaseTool):
             return {"content": rel_path}
 
         except Exception as e:
-            self.logger.error(f"Gagal mengunduh gambar dari {image_url}: {e}", exc_info=True)
+            print(f"Gagal mengunduh gambar dari {image_url}: {e}", exc_info=True)
             raise Exception(f"Failed to download image: {image_url}\nReason: {e}")

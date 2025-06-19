@@ -1,7 +1,7 @@
 import os
 from typing import List, Dict, Any, Union
 from app.loaders.base_loader import BaseLoader, Document, LoaderException
-from app.tools.registry import get_tool
+from app.tools.registry_tool import get_tool
 
 tool = get_tool("ImageDownloaderTool")
 

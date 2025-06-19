@@ -11,8 +11,6 @@ mysqlclient==2.2.0
 sqlalchemy~=2.0
 psycopg[binary]~=3.1
 pgvector~=0.2
-# elasticsearch==9.0.1
-# chromadb==1.0.10
 
 # AI and ML
 openai==0.28.0

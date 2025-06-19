@@ -5,6 +5,7 @@ from typing import List, Dict, Any, TypedDict, Union
 import os
 
 class LoaderException(Exception):
+    """Custom exception for loader errors."""
     pass
 
 class Document(TypedDict):
@@ -45,5 +46,9 @@ class BaseLoader(ABC):
         """
         results = []
         for src in sources:
-            results.extend(self.load(src, **kwargs))
+            try:
+                docs = self.load(src, **kwargs)
+                results.extend(docs)
+            except Exception as e:
+                raise LoaderException(f"Failed to load source '{src}': {e}") from e
         return results

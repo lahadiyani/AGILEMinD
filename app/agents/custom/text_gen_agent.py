@@ -1,6 +1,6 @@
 from app.agents.base_agent import BaseAgent
 from app.prompts.utils import PromptUtils
-from app.llms.registry import get_llm
+from app.llms.registry_llm import get_llm
 
 llm = get_llm("pollinations")
 class TextGenAgent(BaseAgent):

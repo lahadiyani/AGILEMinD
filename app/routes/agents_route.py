@@ -1,4 +1,3 @@
-from flask import request, jsonify
 from app.blueprints import agents_api
 from app.controllers.agent_controller import AgentController
 

@@ -1,7 +1,7 @@
 from app.agents.base_agent import BaseAgent
 from app.prompts.utils import PromptUtils
-from app.llms.registry import get_llm
-from app.loaders.registry import get_loader
+from app.llms.registry_llm import get_llm
+from app.loaders.registry_loader import get_loader
 from urllib.parse import quote_plus
 
 llm = get_llm("pollinations")
@@ -30,7 +30,8 @@ class ImageGenAgent(BaseAgent):
         }
 
     def generate_image(self, image_description: str) -> str:
-        formatted_prompt = self.build_prompt(image_description)
+        # Pastikan key-nya sesuai dengan variable di prompt template, misal {input}
+        formatted_prompt = self.build_prompt(input=image_description)
         encoded_prompt = quote_plus(formatted_prompt)
         image_url = self.llm.get_image_url(encoded_prompt)
         if not image_url:
